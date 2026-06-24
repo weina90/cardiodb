@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" style="font-size: 16px;">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: font-size 0.2s ease, background-color 0.3s ease;
     }
     .heartbeat-slow {
       animation: heartBeat 2.5s infinite;
@@ -46,17 +47,30 @@
 
   <!-- Header / Navigation -->
   <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/20">
           <i class="fa-solid fa-heart-pulse text-white text-xl heartbeat-slow"></i>
         </div>
         <div>
-          <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-pink-400 via-rose-400 to-yellow-300 bg-clip-text text-transparent">Cardio-DB</h1>
-          <p class="text-xs text-slate-400 font-medium">Bahan Bantu Mengajar (BBM) Interaktif Kardinaliti Hubungan</p>
+          <h1 class="font-extrabold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-pink-400 via-rose-400 to-yellow-300 bg-clip-text text-transparent">Cardio-DB</h1>
+          <p class="text-xs md:text-sm text-slate-400 font-medium">Bahan Bantu Mengajar (BBM) Interaktif Kardinaliti Hubungan</p>
         </div>
       </div>
-      <div class="flex items-center gap-2">
+      
+      <!-- Font Size Controller & Badge -->
+      <div class="flex flex-wrap items-center gap-4">
+        <!-- Text Size Widget -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-1.5 flex items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-400 px-2 flex items-center gap-1">
+            <i class="fa-solid fa-font"></i> Saiz Teks:
+          </span>
+          <button id="font-sm" onclick="changeFontSize('sm')" class="px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">SM</button>
+          <button id="font-md" onclick="changeFontSize('md')" class="px-2 py-1 rounded text-xs font-semibold bg-pink-500 text-white shadow shadow-pink-500/20 transition">MD</button>
+          <button id="font-lg" onclick="changeFontSize('lg')" class="px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">LG</button>
+          <button id="font-xl" onclick="changeFontSize('xl')" class="px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">XL</button>
+        </div>
+
         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
           Mod Intervensi: Tingkatan 5
@@ -74,10 +88,10 @@
       <!-- Pengenalan & Miskonsepsi Box -->
       <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
         <div class="absolute -right-10 -top-10 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl"></div>
-        <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2 mb-3">
+        <h2 class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2 mb-3">
           <i class="fa-solid fa-circle-info text-pink-400"></i> Apa itu Cardio-DB?
         </h2>
-        <p class="text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="text-sm md:text-base text-slate-300 leading-relaxed mb-4">
           Teknik <strong class="text-pink-400">Cardio-DB</strong> diinspirasikan daripada mekanik mengepam jantung 
           (<span class="italic text-rose-300">double pump imbasan dua hala</span>) untuk menyelamatkan murid daripada perangkap miskonsepsi tegar ketika menentukan reka bentuk pangkalan data.
         </p>
@@ -87,9 +101,9 @@
               <i class="fa-solid fa-triangle-exclamation text-xs"></i>
             </div>
             <div>
-              <h4 class="text-xs font-extrabold text-rose-300 uppercase tracking-wider mb-1">Miskonsepsi Tegar Murid</h4>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                "Apabila murid membaca ayat <em>'Setiap murid menyertai beberapa kelab'</em> atau melihat satu borang sewaan, mereka terus membuat kesimpulan hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong> tanpa berpusing balik mengepam imbasan arah bertentangan!"
+              <h4 class="text-xs md:text-sm font-extrabold text-rose-300 uppercase tracking-wider mb-1">Miskonsepsi Tegar Murid</h4>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                "Apabila murid membaca ayat <em>'Setiap murid menyertai beberapa kelab'</em> atau melihat satu situasi sewaan, mereka terus membuat kesimpulan hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong> tanpa berpusing balik mengepam imbasan arah bertentangan!"
               </p>
             </div>
           </div>
@@ -99,28 +113,28 @@
       <!-- Senario Situasi Box (Dinamik berdasarkan dropdown/tabs di sebelah kanan) -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
         <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-3">
-          <h2 class="text-base font-bold text-slate-200 flex items-center gap-2">
+          <h2 class="text-base md:text-lg font-bold text-slate-200 flex items-center gap-2">
             <i class="fa-solid fa-file-invoice text-yellow-400"></i> Situasi Semasa
           </h2>
-          <span id="situasi-badge" class="text-xs bg-slate-800 px-2 py-0.5 rounded text-pink-300 border border-slate-700">M:N Kes</span>
+          <span id="situasi-badge" class="text-xs bg-slate-950 px-2 py-0.5 rounded text-pink-300 border border-slate-850">M:N Kes</span>
         </div>
         
         <div id="situasi-koku-desc" class="space-y-2">
           <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario A: Kokurikulum (PAJSK)</p>
-          <p class="text-sm text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+          <p class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
             "Sistem Pengurusan Kokurikulum SMK Tasik Perdana memerlukan pangkalan data untuk merekod maklumat pendaftaran kelab. 
             <span class="text-yellow-300 font-medium underline">Setiap murid boleh menyertai beberapa kelab sukan</span>. 
-            Seterusnya, <span class="text-pink-300 font-medium underline">setiap kelab sukan pula akan dianggotai oleh ramai murid</span>."
+            Seterusnya, <span class="text-pink-300 font-medium underline">setiap kelab sukan pula boleh dianggotai oleh ramai murid</span>."
           </p>
         </div>
 
         <div id="situasi-sewa-desc" class="space-y-2 hidden">
           <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario B: Sistem Sewa Kereta</p>
-          <div class="text-sm text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
+          <div class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
             <p>
-              "Sebuah syarikat sewaan kenderaan menyimpan rekod sewaan pelanggan. 
-              <span class="text-yellow-300 font-medium underline">Seorang pelanggan dibenarkan membuat sewaan bagi beberapa buah kereta</span> yang berbeza sepanjang tempoh keahlian mereka. 
-              Manakala, <span class="text-pink-300 font-medium underline">setiap kereta sewa pula boleh disewa oleh ramai pelanggan</span> yang berbeza pada tarikh-tarikh yang berasingan."
+              "Satu pangkalan data sistem pengurusan tempahan kenderaan merekodkan maklumat pelanggan dan kereta yang disewa. 
+              <span class="text-yellow-300 font-medium underline">Seorang pelanggan dibenarkan membuat sewaan beberapa buah kereta</span> yang berbeza mengikut kesesuaian tarikh. 
+              Manakala, <span class="text-pink-300 font-medium underline">setiap kereta sewaan pula boleh disewa oleh ramai pelanggan</span> secara berasingan."
             </p>
           </div>
         </div>
@@ -129,7 +143,7 @@
       <!-- BBM Legend/Petunjuk -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Petunjuk Warna BBM Fizikal</h3>
-        <div class="space-y-2.5 text-xs text-slate-300">
+        <div class="space-y-2.5 text-xs md:text-sm text-slate-300">
           <div class="flex items-center gap-2.5">
             <div class="w-4 h-4 rounded bg-pink-500 shadow shadow-pink-500/50"></div>
             <span><strong>Warna Merah Jambu:</strong> Kad Entiti (Murid / Kelab / Pelanggan / Kereta)</span>
@@ -155,13 +169,13 @@
         
         <!-- Scenario Switcher Tabs on top of Simulator -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-950/80 p-3 rounded-xl border border-slate-800 mb-6">
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-toggle-on text-pink-500"></i> Pilih Situasi Intervensi:</span>
+          <span class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-toggle-on text-pink-500"></i> Pilih Situasi Intervensi:</span>
           <div class="flex gap-2 w-full sm:w-auto">
-            <button id="tab-koku" onclick="switchScenario('koku')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20">
+            <button id="tab-koku" onclick="switchScenario('koku')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20">
               <i class="fa-solid fa-users-rectangle mr-1"></i> 1. Kokurikulum (M:N)
             </button>
-            <button id="tab-sewa" onclick="switchScenario('sewa')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700">
-              <i class="fa-solid fa-car mr-1"></i> 2. Sewa Kereta
+            <button id="tab-sewa" onclick="switchScenario('sewa')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700">
+              <i class="fa-solid fa-car mr-1"></i> 2. Sewa Kereta (M:N)
             </button>
           </div>
         </div>
@@ -169,9 +183,9 @@
         <!-- Step Indicator Header -->
         <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6 overflow-x-auto gap-4">
           <div class="flex items-center gap-2 shrink-0">
-            <span class="text-xs text-slate-400 uppercase font-bold">Langkah:</span>
+            <span class="text-xs md:text-sm text-slate-400 uppercase font-bold">Langkah:</span>
           </div>
-          <div class="flex items-center gap-2 md:gap-3 text-xs">
+          <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
             <button id="btn-step-1" onclick="goToStep(1)" class="px-3 py-1.5 rounded-lg font-semibold transition-all bg-pink-500 text-white flex items-center gap-1.5">
               <span class="w-5 h-5 rounded-full bg-white/20 text-[10px] flex items-center justify-center">1</span>
               Susun Kad
@@ -196,8 +210,8 @@
 
         <!-- INSTRUCTION BANNER -->
         <div id="step-instruction" class="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-6">
-          <h3 id="inst-title" class="text-pink-400 font-bold text-sm mb-1">Langkah 1: Menyediakan Tapak Fizikal</h3>
-          <p id="inst-desc" class="text-xs text-slate-300 leading-relaxed">
+          <h3 id="inst-title" class="text-pink-400 font-bold text-sm md:text-base mb-1">Langkah 1: Menyediakan Tapak Fizikal</h3>
+          <p id="inst-desc" class="text-xs md:text-sm text-slate-300 leading-relaxed">
             Sediakan dua Kad Entiti utama di atas meja anda. Kad **MURID** di sebelah kiri dan Kad **KELAB** di sebelah kanan. Sambungkan kedua-duanya menggunakan **Tali Hubungan MENYERTAI** bercorak berlian.
           </p>
         </div>
@@ -275,13 +289,13 @@
 
           <!-- Interactive Workspace Helper Controls inside Board -->
           <div id="interactive-panel" class="mt-6 w-full max-w-xl bg-slate-900/90 border border-slate-800 rounded-xl p-4 hidden flex-col items-center gap-3 z-10">
-            <h4 id="question-text" class="text-sm font-bold text-slate-200 text-center">Soalan Interaktif</h4>
+            <h4 id="question-text" class="text-sm md:text-base font-bold text-slate-200 text-center">Soalan Interaktif</h4>
             
             <div id="options-container" class="grid grid-cols-2 gap-3 w-full mt-1">
               <!-- Options loaded dynamically -->
             </div>
 
-            <div id="feedback-message" class="text-xs text-center font-medium min-h-[16px] transition-all duration-300"></div>
+            <div id="feedback-message" class="text-xs md:text-sm text-center font-medium min-h-[16px] transition-all duration-300"></div>
           </div>
 
         </div>
@@ -292,7 +306,7 @@
             <i class="fa-solid fa-chevron-left mr-1"></i> Kembali
           </button>
           
-          <button id="btn-next" onclick="changeStep(1)" class="px-5 py-2 text-sm font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5">
+          <button id="btn-next" onclick="changeStep(1)" class="px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5">
             Seterusnya <i class="fa-solid fa-chevron-right ml-1"></i>
           </button>
         </div>
@@ -306,11 +320,11 @@
   <!-- Section 2: Panduan Teori & Simulasi "Pump" Bersuara / Visual -->
   <section class="max-w-7xl w-full mx-auto p-4 mb-6">
     <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-rose-950/20 border border-slate-800 rounded-2xl p-6 shadow-xl">
-      <h2 class="text-xl font-bold bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent mb-4 flex items-center gap-2">
+      <h2 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent mb-4 flex items-center gap-2">
         <i class="fa-solid fa-dna text-pink-500"></i> Panduan Teknikal Cardio-DB (Rujukan Guru &amp; Pelajar)
       </h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm md:text-base">
         
         <!-- PUMP 1 Card -->
         <div class="bg-slate-950/60 border border-slate-800 p-4.5 rounded-xl flex flex-col gap-2.5">
@@ -318,13 +332,13 @@
             <span class="w-7 h-7 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center font-black">1</span>
             <h4 class="font-bold text-slate-200">PUMP 1: Imbasan Hadapan</h4>
           </div>
-          <p class="text-xs text-slate-400">
+          <p class="text-xs md:text-sm text-slate-400">
             Imbas dari <strong class="text-pink-400">Kiri ke Kanan</strong>. Ambil seunit elemen di kiri dan tanya nilai maksimum di sebelah kanan.
           </p>
-          <div class="bg-slate-900/80 p-2.5 rounded text-xs border border-slate-800 font-mono text-pink-300">
+          <div class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-pink-300">
             "Jika saya ambil SEORANG [Kiri], berapakah nilai maksimum [Kanan] yang boleh dikaitkan dengannya?"
           </div>
-          <span class="text-xs text-slate-300 font-semibold"><i class="fa-solid fa-arrow-right-long text-pink-400"></i> Nilai maksimum: <strong>Banyak (M)</strong></span>
+          <span class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-right-long text-pink-400"></i> Nilai maksimum: <strong>Banyak (M)</strong></span>
         </div>
 
         <!-- PUMP 2 Card -->
@@ -333,13 +347,13 @@
             <span class="w-7 h-7 rounded-lg bg-yellow-500/10 text-yellow-400 flex items-center justify-center font-black">2</span>
             <h4 class="font-bold text-slate-200">PUMP 2: Imbasan Belakang</h4>
           </div>
-          <p class="text-xs text-slate-400">
+          <p class="text-xs md:text-sm text-slate-400">
             Kekunci kejayaan! Pusing dan berdiri di kanan. Imbas kembali dari <strong class="text-yellow-400">Kanan ke Kiri</strong>.
           </p>
-          <div class="bg-slate-900/80 p-2.5 rounded text-xs border border-slate-800 font-mono text-yellow-300">
+          <div class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-yellow-300">
             "Jika saya ambil SEBUAH [Kanan], berapakah nilai maksimum [Kiri] yang boleh dikaitkan dengannya?"
           </div>
-          <span class="text-xs text-slate-300 font-semibold"><i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Nilai maksimum: <strong>Banyak (N)</strong></span>
+          <span class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Nilai maksimum: <strong>Banyak (N)</strong></span>
         </div>
 
         <!-- Sintesis Card -->
@@ -348,14 +362,14 @@
             <span class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-black">3</span>
             <h4 class="font-bold text-slate-200">Sintesis Muktamad</h4>
           </div>
-          <p class="text-xs text-slate-400">
+          <p class="text-xs md:text-sm text-slate-400">
             Ambil keputusan maksimum daripada kedua-dua PUMP. Jangan cantum di tengah jalan, bandingkan hasil akhir!
           </p>
-          <div class="bg-emerald-950/20 p-2.5 rounded text-xs border border-emerald-500/20 text-emerald-300">
+          <div class="bg-emerald-950/20 p-2.5 rounded text-xs md:text-sm border border-emerald-500/20 text-emerald-300">
             Sisi Kiri = M (Banyak)<br>
             Sisi Kanan = N (Banyak)
           </div>
-          <span class="text-xs text-emerald-300 font-bold"><i class="fa-solid fa-check-double"></i> Hubungan Muktamad: Banyak-ke-Banyak (M:N)</span>
+          <span class="text-xs md:text-sm text-emerald-300 font-bold"><i class="fa-solid fa-check-double"></i> Hubungan Muktamad: Banyak-ke-Banyak (M:N)</span>
         </div>
 
       </div>
@@ -369,12 +383,12 @@
       
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2">
+          <h2 class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2">
             <i class="fa-solid fa-graduation-cap text-yellow-400"></i> Kuiz Intervensi Pintar (Tingkatan 5)
           </h2>
-          <p class="text-xs text-slate-400">Selesaikan situasi mengikut tahap keupayaan anda untuk menguasai pangkalan data sepenuhnya!</p>
+          <p class="text-xs md:text-sm text-slate-400">Selesaikan situasi mengikut tahap keupayaan anda untuk menguasai pangkalan data sepenuhnya!</p>
         </div>
-        <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-xs text-slate-300 flex items-center gap-1.5">
+        <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-xs md:text-sm text-slate-300 flex items-center gap-1.5">
           <i class="fa-solid fa-star text-yellow-400"></i> Markah Skor: <span id="quiz-score" class="font-bold text-yellow-400">0 / 5</span>
         </div>
       </div>
@@ -390,25 +404,25 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-blue-500/10 text-blue-400 rounded border border-blue-500/20">Tahap Rendah (Asas)</span>
               </div>
-              <h4 class="text-sm font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Setiap <span class="text-pink-300">Murid</span> dibekalkan dengan satu <span class="text-yellow-300">Kad Matrik</span> unik oleh pihak sekolah. Seorang murid hanya boleh memiliki satu kad matrik, manakala satu kad matrik itu pula hanya dimiliki oleh seorang murid khusus.
-                <br><span class="text-xs text-slate-400 mt-1 block">Aplikasi Cardio-DB: PUMP 1 (1 murid -> 1 kad) | PUMP 2 (1 kad -> 1 murid).</span>
+                <br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Aplikasi Cardio-DB: PUMP 1 (1 murid -> 1 kad) | PUMP 2 (1 kad -> 1 murid).</span>
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                <button onclick="checkQuiz(1, '1:1', this)" class="q-opt-1 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu ($1:1$)</span>
+                <button onclick="checkQuiz(1, '1:1', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(1, '1:M', this)" class="q-opt-1 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak ($1:M$)</span>
+                <button onclick="checkQuiz(1, '1:M', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(1, 'M:N', this)" class="q-opt-1 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak ($M:N$)</span>
+                <button onclick="checkQuiz(1, 'M:N', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
-              <p class="quiz-feedback-1 text-xs mt-3 hidden"></p>
+              <p class="quiz-feedback-1 text-xs md:text-sm mt-3 hidden"></p>
             </div>
           </div>
         </div>
@@ -421,55 +435,55 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-yellow-500/10 text-yellow-400 rounded border border-yellow-500/20">Tahap Sederhana</span>
               </div>
-              <h4 class="text-sm font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Pihak hospital merekodkan kemasukan <span class="text-pink-300">Pesakit</span> ke dalam <span class="text-yellow-300">Wad</span>. Pada satu-satu masa, seorang pesakit hanya ditempatkan di sebuah wad sahaja. Namun, sebuah wad boleh menampung ramai pesakit yang menghidap penyakit yang sama.
-                <br><span class="text-xs text-slate-400 mt-1 block">Petua: Gunakan PUMP 1 (Pesakit -> Wad) dan PUMP 2 (Wad -> Pesakit) secara berasingan!</span>
+                <br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Petua: Gunakan PUMP 1 (Pesakit -> Wad) dan PUMP 2 (Wad -> Pesakit) secara berasingan!</span>
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                <button onclick="checkQuiz(2, '1:1', this)" class="q-opt-2 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu ($1:1$)</span>
+                <button onclick="checkQuiz(2, '1:1', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(2, '1:M', this)" class="q-opt-2 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak ($1:M$)</span>
+                <button onclick="checkQuiz(2, '1:M', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(2, 'M:N', this)" class="q-opt-2 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak ($M:N$)</span>
+                <button onclick="checkQuiz(2, 'M:N', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
-              <p class="quiz-feedback-2 text-xs mt-3 hidden"></p>
+              <p class="quiz-feedback-2 text-xs md:text-sm mt-3 hidden"></p>
             </div>
           </div>
         </div>
 
-        <!-- Soalan 3: TAHAP TINGGI (KBAT - SISTEM SEWA KERETA) -->
+        <!-- Soalan 3: TAHAP TINGGI (SITUASI SEWA KERETA) -->
         <div class="bg-slate-950/60 p-5 rounded-xl border border-rose-500/20 bg-gradient-to-tr from-slate-950 to-rose-950/10 transition hover:border-pink-500/30">
           <div class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-pink-900/40 border border-pink-500/40 flex items-center justify-center font-bold text-xs text-pink-300 shrink-0">3</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-pink-500/10 text-pink-400 rounded border border-pink-500/20">Tahap Tinggi (KBAT - Sistem Sewa Kereta)</span>
+                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-pink-500/10 text-pink-400 rounded border border-pink-500/20">Tahap Tinggi (KBAT - Situasi Sewaan)</span>
               </div>
-              <h4 class="text-sm font-bold text-slate-200 leading-relaxed mb-3">
-                Situasi: Sebuah agensi pelancongan menyediakan perkhidmatan sewaan kenderaan. Setiap <span class="text-pink-300">Pelanggan</span> dibenarkan menyewa beberapa buah <span class="text-yellow-300">Kereta</span> sepanjang tahun, manakala setiap kereta sewa pula boleh disewa oleh ramai pelanggan secara bergilir-gilir. Apakah kardinaliti hubungan muktamad antara PELANGGAN dan KERETA?
+              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+                Sebuah agensi pelancongan merekodkan maklumat pelanggan dan kenderaan yang disewa. Seorang <span class="text-pink-300">Pelanggan</span> boleh menyewa beberapa buah <span class="text-yellow-300">Kereta</span> sepanjang tempoh keahlian mereka. Seterusnya, sebuah kereta sewaan pula boleh disewa oleh ramai pelanggan pada tarikh yang berlainan. Apakah hubungan muktamad antara PELANGGAN dan KERETA?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                <button onclick="checkQuiz(3, '1:1', this)" class="q-opt-3 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu ($1:1$)</span>
+                <button onclick="checkQuiz(3, '1:1', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(3, '1:M', this)" class="q-opt-3 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak ($1:M$)</span>
+                <button onclick="checkQuiz(3, '1:M', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(3, 'M:N', this)" class="q-opt-3 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak ($M:N$)</span>
+                <button onclick="checkQuiz(3, 'M:N', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
-              <p class="quiz-feedback-3 text-xs mt-3 hidden"></p>
+              <p class="quiz-feedback-3 text-xs md:text-sm mt-3 hidden"></p>
             </div>
           </div>
         </div>
@@ -482,24 +496,24 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-slate-800 text-slate-400 rounded border border-slate-700">Sains Komputer KBAT</span>
               </div>
-              <h4 class="text-sm font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Setiap <span class="text-pink-300">Pekerja</span> MegaHoldings boleh ditugaskan untuk menyumbang dalam beberapa <span class="text-yellow-300">Projek</span> serentak. Pada masa yang sama, setiap projek pula dilaksanakan oleh sekumpulan pekerja yang mempunyai pelbagai kepakaran. Berapakah kardinaliti hubungannya?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                <button onclick="checkQuiz(4, '1:1', this)" class="q-opt-4 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu ($1:1$)</span>
+                <button onclick="checkQuiz(4, '1:1', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(4, '1:M', this)" class="q-opt-4 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak ($1:M$)</span>
+                <button onclick="checkQuiz(4, '1:M', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(4, 'M:N', this)" class="q-opt-4 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak ($M:N$)</span>
+                <button onclick="checkQuiz(4, 'M:N', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                  <span>C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
-              <p class="quiz-feedback-4 text-xs mt-3 hidden"></p>
+              <p class="quiz-feedback-4 text-xs md:text-sm mt-3 hidden"></p>
             </div>
           </div>
         </div>
@@ -512,20 +526,20 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Refleksi Metakognitif</span>
               </div>
-              <h4 class="text-sm font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Mengapakah kita perlu melakukan <span class="text-yellow-400 font-bold">PUMP 2 (Imbasan Belakang)</span> dalam Teknik Cardio-DB?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-                <button onclick="checkQuiz(5, 'A', this)" class="q-opt-5 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                <button onclick="checkQuiz(5, 'A', this)" class="q-opt-5 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
                   <span>A. Kerana imbasan pertama sahaja boleh menyebabkan kita terlepas pandang kekangan arah bertentangan.</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
-                <button onclick="checkQuiz(5, 'B', this)" class="q-opt-5 p-3 text-xs text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
+                <button onclick="checkQuiz(5, 'B', this)" class="q-opt-5 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
                   <span>B. Sekadar hiasan untuk menyedapkan aliran reka bentuk pangkalan data sahaja.</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
-              <p class="quiz-feedback-5 text-xs mt-3 hidden"></p>
+              <p class="quiz-feedback-5 text-xs md:text-sm mt-3 hidden"></p>
             </div>
           </div>
         </div>
@@ -605,7 +619,7 @@
           }, 150);
         }
       } catch(e) {
-        console.log("Audio not allowed / initialized yet.");
+        console.log("Audio context standby.");
       }
     }
   </script>
@@ -649,17 +663,17 @@
         leftEntity: "PELANGGAN",
         rightEntity: "KERETA",
         relation: "MENYEWA",
-        p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Pelanggan (contoh: Ahmad)</span>, adakah Ahmad boleh menyewa hanya SATU kereta atau BANYAK kereta (pada tarikh/masa berbeza)?`,
+        p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Pelanggan</span>, adakah pelanggan tersebut boleh menyewa hanya SATU kereta atau BANYAK kereta (pada tarikh berbeza)?`,
         p1_opt_1_desc: "Satu Kereta Sahaja",
         p1_opt_M_desc: "Banyak Kereta",
-        p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Hebat! Ahmad boleh menyewa beberapa buah kereta sepanjang tempoh langganannya. Kita letak token M di sebelah PELANGGAN.",
-        p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba semula. Pelanggan dibenarkan menyewa kereta yang berbeza pada tarikh yang berasingan.",
+        p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Hebat! Pelanggan boleh menyewa beberapa buah kereta sepanjang tempoh langganannya. Kita letak token M di sebelah PELANGGAN.",
+        p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba semula. Pelanggan dibenarkan menyewa kereta berasingan pada hari yang berbeza.",
         
         p2_question: `Jika anda mengambil <span class="text-yellow-400 font-bold underline">SEBUAH Kereta</span>, adakah kereta ini hanya boleh disewa oleh SEORANG pelanggan sahaja sepanjang tempoh hayat kereta itu?`,
         p2_opt_1_desc: "Hanya Seorang Pelanggan",
-        p2_opt_N_desc: "Ramai Pelaggan",
+        p2_opt_N_desc: "Ramai Pelanggan",
         p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Tepat! Kereta tersebut boleh disewa secara bergilir-gilir oleh ramai pelanggan yang berbeza. Kita letak token N di sebelah KERETA.",
-        p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Jika sesebuah kereta sewaan hanya terhad kepada seorang pelanggan sahaja selamanya, syarikat akan kerugian.",
+        p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Jika kereta sewa dihadkan kepada seorang sahaja selamanya, syarikat tidak akan mendapat keuntungan optimum.",
         
         sintesis_desc: "Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti PELANGGAN dan Token <strong>N (Banyak)</strong> pada sisi Entiti KERETA.",
         sintesis_question: `Apakah Kardinaliti Akhir bagi hubungan antara PELANGGAN dan KERETA dalam sistem sewaan kereta?`
@@ -701,14 +715,14 @@
       
       // Update Tab UI
       if (currentScenario === 'koku') {
-        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
-        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
+        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
+        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
         document.getElementById('situasi-koku-desc').classList.remove('hidden');
         document.getElementById('situasi-sewa-desc').classList.add('hidden');
         document.getElementById('situasi-badge').innerText = "M:N Kes";
       } else {
-        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
-        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
+        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
+        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
         document.getElementById('situasi-koku-desc').classList.add('hidden');
         document.getElementById('situasi-sewa-desc').classList.remove('hidden');
         document.getElementById('situasi-badge').innerText = "Situasi Sewa";
@@ -783,11 +797,11 @@
           questionText.innerHTML = sc.p1_question;
           
           optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep2('1')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep2('1')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-lg text-slate-400">1</span>
               <span>${sc.p1_opt_1_desc}</span>
             </button>
-            <button onclick="selectOptionStep2('M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep2('M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-lg text-pink-400">Banyak (M)</span>
               <span>${sc.p1_opt_M_desc}</span>
             </button>
@@ -835,11 +849,11 @@
           questionText.innerHTML = sc.p2_question;
           
           optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep3('1')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep3('1')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-lg text-slate-400">1</span>
               <span>${sc.p2_opt_1_desc}</span>
             </button>
-            <button onclick="selectOptionStep3('N')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep3('N')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-lg text-yellow-400">Banyak (N)</span>
               <span>${sc.p2_opt_N_desc}</span>
             </button>
@@ -894,11 +908,11 @@
           questionText.innerHTML = sc.sintesis_question;
           
           optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep4('1:M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep4('1:M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-base text-slate-400">1:M</span>
               <span>Satu-ke-Banyak (Miskonsepsi!)</span>
             </button>
-            <button onclick="selectOptionStep4('M:N')" class="p-3 rounded-lg border border-slate-800 bg-emerald-950/20 hover:bg-emerald-900/30 text-xs text-slate-300 transition flex flex-col items-center gap-1">
+            <button onclick="selectOptionStep4('M:N')" class="p-3 rounded-lg border border-slate-800 bg-emerald-950/20 hover:bg-emerald-900/30 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-base text-emerald-400">M:N</span>
               <span>Banyak-ke-Banyak (M:N)</span>
             </button>
@@ -909,7 +923,6 @@
 
     function goToStep(step) {
       if (step > maxReachedStep) {
-        // Prevent skipping ahead without resolving steps
         return;
       }
       playBeep('click');
@@ -921,8 +934,7 @@
       const targetStep = currentStep + dir;
       if (targetStep >= 1 && targetStep <= 4) {
         if (dir === 1 && !stepStates[currentStep]) {
-          // If trying to go forward without answering correctly
-          feedbackMessage.className = "text-xs text-center font-semibold text-rose-400 animate-pulse mt-2";
+          feedbackMessage.className = "text-xs md:text-sm text-center font-semibold text-rose-400 animate-pulse mt-2";
           feedbackMessage.innerText = "Sila selesaikan cabaran soalan interaktif terlebih dahulu!";
           playBeep('fail');
           return;
@@ -969,27 +981,26 @@
       // Manage Seterusnya button text and color
       if (currentStep === 4 && stepStates[4]) {
         btnNext.innerHTML = `Selesai Intervensi <i class="fa-solid fa-circle-check ml-1 text-emerald-400"></i>`;
-        btnNext.className = "px-5 py-2 text-sm font-bold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5";
+        btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5";
       } else {
         btnNext.innerHTML = `Seterusnya <i class="fa-solid fa-chevron-right ml-1"></i>`;
-        btnNext.className = "px-5 py-2 text-sm font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5";
+        btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5";
       }
     }
 
-    // Interactive selection actions
     function selectOptionStep2(opt) {
       const activeSc = scenarios[currentScenario];
       if (opt === 'M') {
         stepStates[2] = true;
         tokenLeft.innerText = "M";
         tokenLeft.className = "w-14 h-14 rounded-lg bg-pink-500 text-slate-950 flex items-center justify-center font-black text-2xl shadow-lg transition-all animate-bounce";
-        feedbackMessage.className = "text-xs text-center font-bold text-emerald-400 mt-2";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-400 mt-2";
         feedbackMessage.innerHTML = activeSc.p1_correct_feedback;
         playBeep('success');
         if (maxReachedStep < 3) maxReachedStep = 3;
         updateUI();
       } else {
-        feedbackMessage.className = "text-xs text-center font-bold text-rose-400 mt-2";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-400 mt-2";
         feedbackMessage.innerHTML = activeSc.p1_wrong_feedback;
         playBeep('fail');
       }
@@ -1001,13 +1012,13 @@
         stepStates[3] = true;
         tokenRight.innerText = "N";
         tokenRight.className = "w-14 h-14 rounded-lg bg-yellow-500 text-slate-950 flex items-center justify-center font-black text-2xl shadow-lg transition-all animate-bounce";
-        feedbackMessage.className = "text-xs text-center font-bold text-emerald-400 mt-2";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-400 mt-2";
         feedbackMessage.innerHTML = activeSc.p2_correct_feedback;
         playBeep('success');
         if (maxReachedStep < 4) maxReachedStep = 4;
         updateUI();
       } else {
-        feedbackMessage.className = "text-xs text-center font-bold text-rose-400 mt-2";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-400 mt-2";
         feedbackMessage.innerHTML = activeSc.p2_wrong_feedback;
         playBeep('fail');
       }
@@ -1016,17 +1027,17 @@
     function selectOptionStep4(opt) {
       if (opt === 'M:N') {
         stepStates[4] = true;
-        feedbackMessage.className = "text-xs text-center font-bold text-emerald-400 mt-2 bg-emerald-950/40 p-3 rounded-xl border border-emerald-500/20";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-400 mt-2 bg-emerald-950/40 p-3 rounded-xl border border-emerald-500/20";
         feedbackMessage.innerHTML = `
           <div class='flex flex-col gap-1 items-center'>
-            <span class='text-sm'><i class='fa-solid fa-trophy text-yellow-400'></i> Syabas! Anda Selesai Intervensi!</span>
-            <span class='font-normal text-slate-300'>Kardinaliti muktamad bagi hubungan ini ialah Banyak-ke-Banyak (M:N) dari kiri ke kanan. Anda berjaya memecahkan ralat miskonsepsi!</span>
+            <span class='text-sm md:text-base'><i class='fa-solid fa-trophy text-yellow-400'></i> Syabas! Anda Selesai Intervensi!</span>
+            <span class='font-normal text-slate-300 text-xs md:text-sm'>Kardinaliti muktamad bagi hubungan ini ialah Banyak-ke-Banyak (M:N) dari kiri ke kanan. Anda berjaya memecahkan ralat miskonsepsi!</span>
           </div>
         `;
         playBeep('success');
         updateUI();
       } else {
-        feedbackMessage.className = "text-xs text-center font-bold text-rose-400 mt-2";
+        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-400 mt-2";
         feedbackMessage.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Miskonsepsi dikesan! Ingat peraturan Cardio-DB: ambil nilai paling maksimum daripada KEDUA-DUA imbasan (M dan N).";
         playBeep('fail');
       }
@@ -1035,6 +1046,40 @@
     // Initialize Page
     window.onload = function() {
       updateUI();
+    }
+  </script>
+
+  <!-- Accessibility Text Size Control Script -->
+  <script>
+    function changeFontSize(size) {
+      playBeep('click');
+      const htmlEl = document.documentElement;
+      
+      // Reset all buttons styling
+      const buttons = ['sm', 'md', 'lg', 'xl'];
+      buttons.forEach(b => {
+        const btn = document.getElementById(`font-${b}`);
+        btn.className = "px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition";
+      });
+
+      // Update active button & root font size
+      const activeBtn = document.getElementById(`font-${size}`);
+      activeBtn.className = "px-2 py-1 rounded text-xs font-semibold bg-pink-500 text-white shadow shadow-pink-500/20 transition";
+
+      switch(size) {
+        case 'sm':
+          htmlEl.style.fontSize = "14px";
+          break;
+        case 'md':
+          htmlEl.style.fontSize = "16px"; // Default
+          break;
+        case 'lg':
+          htmlEl.style.fontSize = "19px";
+          break;
+        case 'xl':
+          htmlEl.style.fontSize = "22px";
+          break;
+      }
     }
   </script>
 
@@ -1065,12 +1110,12 @@
       if (qNum === 1) {
         if (ans === '1:1') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Betul (Tahap Rendah Kuasai!)</span> Menggunakan imbasan Cardio-DB: SEORANG murid hanya ada SATU kad matrik (PUMP 1: 1). SEBUAH kad matrik hanya dimiliki oleh SEORANG murid (PUMP 2: 1). Maka, hubungannya ialah <strong>Satu-ke-Satu ($1:1$)</strong>.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Betul (Tahap Rendah Kuasai!)</span> Menggunakan imbasan Cardio-DB: SEORANG murid hanya ada SATU kad matrik (PUMP 1: 1). SEBUAH kad matrik hanya dimiliki oleh SEORANG murid (PUMP 2: 1). Maka, hubungannya ialah <strong>Satu-ke-Satu (1:1)</strong>.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Cuba teliti semula: Adakah munasabah jika sebuah kad matrik boleh dikongsi oleh ramai murid? Sudah tentu tidak. Hubungan yang betul ialah <strong>$1:1$</strong>.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Cuba teliti semula: Adakah munasabah jika sebuah kad matrik boleh dikongsi oleh ramai murid? Sudah tentu tidak. Hubungan yang betul ialah <strong>1:1</strong>.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
       } 
@@ -1078,12 +1123,12 @@
       else if (qNum === 2) {
         if (ans === '1:M') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Hebat (Tahap Sederhana Kuasai!)</span> Mari kita mengepam Cardio-DB: <br><strong>PUMP 1 (Hadapan):</strong> Jika kita ambil SEORANG Pesakit, dia boleh ditempatkan dalam maksimum <strong>SATU (1)</strong> wad sahaja pada satu masa.<br><strong>PUMP 2 (Belakang):</strong> Jika kita ambil SEBUAH Wad, ia boleh menampung <strong>BANYAK (M)</strong> pesakit.<br>Sintesis: Kiri ke kanan mendapat 'M' pada sisi pesakit. Kanan ke kiri mendapat '1' pada sisi wad. Maka, hubungannya ialah <strong>Satu-ke-Banyak ($1:M$)</strong>.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Hebat (Tahap Sederhana Kuasai!)</span> Mari kita mengepam Cardio-DB: <br><strong>PUMP 1 (Hadapan):</strong> Jika kita ambil SEORANG Pesakit, dia boleh ditempatkan dalam maksimum <strong>SATU (1)</strong> wad sahaja pada satu masa.<br><strong>PUMP 2 (Belakang):</strong> Jika kita ambil SEBUAH Wad, ia boleh menampung <strong>BANYAK (M)</strong> pesakit.<br>Sintesis: Kiri ke kanan mendapat 'M' pada sisi pesakit. Kanan ke kiri mendapat '1' pada sisi wad. Maka, hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong>.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Ingat! PUMP 1: Pesakit hanya boleh baring di SATU wad sahaja (1). PUMP 2: Wad boleh diisi oleh BANYAK pesakit (M). Jadi hubungannya ialah <strong>$1:M$</strong>.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Ingat! PUMP 1: Pesakit hanya boleh baring di SATU wad sahaja (1). PUMP 2: Wad boleh diisi oleh BANYAK pesakit (M). Jadi hubungannya ialah <strong>1:M</strong>.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
       }
@@ -1091,12 +1136,12 @@
       else if (qNum === 3) {
         if (ans === 'M:N') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Syabas! Anda menguasai senario sewaan kereta!</span><br><strong>PUMP 1 (Hadapan):</strong> SEORANG Pelanggan boleh menyewa <strong>BANYAK (M)</strong> kereta yang berbeza pada masa berasingan.<br><strong>PUMP 2 (Belakang):</strong> SEBUAH Kereta pula boleh disewa oleh <strong>BANYAK (N)</strong> pelanggan sepanjang tempoh operasinya secara bergilir-gilir.<br>Sintesis Cardio-DB menghasilkan hubungan muktamad <strong>Banyak-ke-Banyak ($M:N$)</strong> dari kiri ke kanan.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Syabas! Anda menguasai senario sewaan!</span><br><strong>PUMP 1 (Hadapan):</strong> SEORANG Pelanggan boleh menyewa <strong>BANYAK (M)</strong> kereta yang berbeza pada masa berasingan.<br><strong>PUMP 2 (Belakang):</strong> SEBUAH Kereta pula boleh disewa oleh <strong>BANYAK (N)</strong> pelanggan sepanjang tempoh operasinya.<br>Sintesis Cardio-DB menghasilkan hubungan muktamad <strong>Banyak-ke-Banyak (M:N)</strong> dari kiri ke kanan.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah (Perangkap Miskonsepsi!).</span> Adakah sebuah kereta sewa hanya boleh disewa oleh seorang pelanggan sahaja sepanjang hayatnya? Tidak. Kereta tersebut akan disewa oleh ramai pelanggan lain secara bergilir-gilir. Maka hubungannya mestilah <strong>$M:N$</strong>!`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah (Perangkap Miskonsepsi!).</span> Adakah sebuah kereta sewa hanya boleh disewa oleh seorang pelanggan sahaja? Tidak. Kereta tersebut akan disewa oleh ramai pelanggan lain secara bergilir-gilir. Jadi ia mesti <strong>M:N</strong>!`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
       }
@@ -1104,12 +1149,12 @@
       else if (qNum === 4) {
         if (ans === 'M:N') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Cemerlang! (M:N Diperoleh)</span> Anda berjaya berfikir secara kritis!<br><strong>PUMP 1:</strong> SEORANG pekerja boleh menyertai <strong>BANYAK (M)</strong> projek.<br><strong>PUMP 2:</strong> SEBUAH projek boleh dikendalikan oleh <strong>BANYAK (N)</strong> pekerja.<br>Hasil maksimum kedua-dua belah pihak ialah <strong>Banyak-ke-Banyak ($M:N$)</strong> dari kiri ke kanan. Syabas kerana tidak terjebak dengan miskonsepsi $1:M$!`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Cemerlang! (M:N Diperoleh)</span> Anda berjaya berfikir secara kritis!<br><strong>PUMP 1:</strong> SEORANG pekerja boleh menyertai <strong>BANYAK (M)</strong> projek.<br><strong>PUMP 2:</strong> SEBUAH projek boleh dikendalikan oleh <strong>BANYAK (N)</strong> pekerja.<br>Hasil maksimum kedua-dua belah pihak ialah <strong>Banyak-ke-Banyak (M:N)</strong> dari kiri ke kanan. Syabas kerana tidak terjebak dengan miskonsepsi 1:M!`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang Tepat.</span> Anda mungkin hanya melakukan PUMP 1 sahaja. Jika ditiup PUMP 2, sebuah projek korporat sudah pasti mengandungi ramai pekerja (Banyak) demi melengkapkan tugas. Maka hubungan muktamad ialah <strong>$M:N$</strong>.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang Tepat.</span> Anda mungkin hanya melakukan PUMP 1 sahaja. Jika ditiup PUMP 2, sebuah projek korporat sudah pasti mengandungi ramai pekerja (Banyak) demi melengkapkan tugas. Maka hubungan muktamad ialah <strong>M:N</strong>.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
       }
@@ -1118,11 +1163,11 @@
         if (ans === 'A') {
           isCorrect = true;
           feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Tepat!</span> Imbasan satu hala (PUMP 1 sahaja) merupakan punca utama kegagalan murid Tingkatan 5 menjawab soalan pangkalan data SPM dengan betul. Syabas atas refleksi anda!`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang tepat.</span> PUMP 2 adalah proses semakan songsang bagi menentukan hakikat sebenar data maksimum dari sudut bertentangan demi mengelakkan perangkap ralat $1:M$.`;
-          element.className = "p-3 text-xs text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
+          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang tepat.</span> PUMP 2 adalah proses semakan songsang bagi menentukan hakikat sebenar data maksimum dari sudut bertentangan demi mengelakkan perangkap ralat 1:M.`;
+          element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
       }

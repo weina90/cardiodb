@@ -54,16 +54,26 @@
         </div>
         <div>
           <h1 class="font-extrabold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-pink-400 via-rose-400 to-yellow-300 bg-clip-text text-transparent">Cardio-DB</h1>
-          <p class="text-xs md:text-sm text-slate-400 font-medium">Bahan Bantu Mengajar (BBM) Interaktif Kardinaliti Hubungan</p>
+          <p id="hdr-subtitle" class="text-xs md:text-sm text-slate-400 font-medium">Bahan Bantu Mengajar (BBM) Interaktif Kardinaliti Hubungan</p>
         </div>
       </div>
       
-      <!-- Font Size Controller & Badge -->
-      <div class="flex flex-wrap items-center gap-4">
+      <!-- Font Size & Language Controls -->
+      <div class="flex flex-wrap items-center gap-3">
+        
+        <!-- Language Switcher Widget -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-1.5 flex items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-400 px-1.5 flex items-center gap-1">
+            <i class="fa-solid fa-globe text-pink-400"></i> <span id="lbl-lang">Bahasa:</span>
+          </span>
+          <button id="lang-ms" onclick="changeLanguage('ms')" class="px-2.5 py-1 rounded text-xs font-bold bg-pink-500 text-white shadow shadow-pink-500/20 transition">BM</button>
+          <button id="lang-en" onclick="changeLanguage('en')" class="px-2.5 py-1 rounded text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">EN</button>
+        </div>
+
         <!-- Text Size Widget -->
         <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-1.5 flex items-center gap-1.5">
-          <span class="text-xs font-bold text-slate-400 px-2 flex items-center gap-1">
-            <i class="fa-solid fa-font"></i> Saiz Teks:
+          <span class="text-xs font-bold text-slate-400 px-1.5 flex items-center gap-1">
+            <i class="fa-solid fa-font"></i> <span id="lbl-fontsize">Saiz:</span>
           </span>
           <button id="font-sm" onclick="changeFontSize('sm')" class="px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">SM</button>
           <button id="font-md" onclick="changeFontSize('md')" class="px-2 py-1 rounded text-xs font-semibold bg-pink-500 text-white shadow shadow-pink-500/20 transition">MD</button>
@@ -71,7 +81,7 @@
           <button id="font-xl" onclick="changeFontSize('xl')" class="px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition">XL</button>
         </div>
 
-        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center gap-1.5">
+        <span id="hdr-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
           Mod Intervensi: Tingkatan 5
         </span>
@@ -88,10 +98,10 @@
       <!-- Pengenalan & Miskonsepsi Box -->
       <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
         <div class="absolute -right-10 -top-10 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl"></div>
-        <h2 class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2 mb-3">
+        <h2 id="intro-title" class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2 mb-3">
           <i class="fa-solid fa-circle-info text-pink-400"></i> Apa itu Cardio-DB?
         </h2>
-        <p class="text-sm md:text-base text-slate-300 leading-relaxed mb-4">
+        <p id="intro-desc" class="text-sm md:text-base text-slate-300 leading-relaxed mb-4">
           Teknik <strong class="text-pink-400">Cardio-DB</strong> diinspirasikan daripada mekanik mengepam jantung 
           (<span class="italic text-rose-300">double pump imbasan dua hala</span>) untuk menyelamatkan murid daripada perangkap miskonsepsi tegar ketika menentukan reka bentuk pangkalan data.
         </p>
@@ -101,8 +111,8 @@
               <i class="fa-solid fa-triangle-exclamation text-xs"></i>
             </div>
             <div>
-              <h4 class="text-xs md:text-sm font-extrabold text-rose-300 uppercase tracking-wider mb-1">Miskonsepsi Tegar Murid</h4>
-              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+              <h4 id="misc-title" class="text-xs md:text-sm font-extrabold text-rose-300 uppercase tracking-wider mb-1">Miskonsepsi Tegar Murid</h4>
+              <p id="misc-desc" class="text-xs md:text-sm text-slate-300 leading-relaxed">
                 "Apabila murid membaca ayat <em>'Setiap murid menyertai beberapa kelab'</em> atau melihat satu situasi sewaan, mereka terus membuat kesimpulan hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong> tanpa berpusing balik mengepam imbasan arah bertentangan!"
               </p>
             </div>
@@ -110,18 +120,18 @@
         </div>
       </div>
 
-      <!-- Senario Situasi Box (Dinamik berdasarkan dropdown/tabs di sebelah kanan) -->
+      <!-- Senario Situasi Box -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
         <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-3">
-          <h2 class="text-base md:text-lg font-bold text-slate-200 flex items-center gap-2">
+          <h2 id="sit-current-title" class="text-base md:text-lg font-bold text-slate-200 flex items-center gap-2">
             <i class="fa-solid fa-file-invoice text-yellow-400"></i> Situasi Semasa
           </h2>
           <span id="situasi-badge" class="text-xs bg-slate-950 px-2 py-0.5 rounded text-pink-300 border border-slate-850">M:N Kes</span>
         </div>
         
         <div id="situasi-koku-desc" class="space-y-2">
-          <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario A: Kokurikulum (PAJSK)</p>
-          <p class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+          <p id="sit-a-title" class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario A: Kokurikulum (PAJSK)</p>
+          <p id="sit-a-body" class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
             "Sistem Pengurusan Kokurikulum SMK Tasik Perdana memerlukan pangkalan data untuk merekod maklumat pendaftaran kelab. 
             <span class="text-yellow-300 font-medium underline">Setiap murid boleh menyertai beberapa kelab sukan</span>. 
             Seterusnya, <span class="text-pink-300 font-medium underline">setiap kelab sukan pula boleh dianggotai oleh ramai murid</span>."
@@ -129,8 +139,8 @@
         </div>
 
         <div id="situasi-sewa-desc" class="space-y-2 hidden">
-          <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario B: Sistem Sewa Kereta</p>
-          <div class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
+          <p id="sit-b-title" class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Senario B: Sistem Sewa Kereta</p>
+          <div id="sit-b-body" class="text-sm md:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
             <p>
               "Satu pangkalan data sistem pengurusan tempahan kenderaan merekodkan maklumat pelanggan dan kereta yang disewa. 
               <span class="text-yellow-300 font-medium underline">Seorang pelanggan dibenarkan membuat sewaan beberapa buah kereta</span> yang berbeza mengikut kesesuaian tarikh. 
@@ -142,19 +152,19 @@
 
       <!-- BBM Legend/Petunjuk -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Petunjuk Warna BBM Fizikal</h3>
+        <h3 id="lgd-title" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Petunjuk Warna BBM Fizikal</h3>
         <div class="space-y-2.5 text-xs md:text-sm text-slate-300">
           <div class="flex items-center gap-2.5">
             <div class="w-4 h-4 rounded bg-pink-500 shadow shadow-pink-500/50"></div>
-            <span><strong>Warna Merah Jambu:</strong> Kad Entiti (Murid / Kelab / Pelanggan / Kereta)</span>
+            <span id="lgd-pink"><strong>Warna Merah Jambu:</strong> Kad Entiti (Murid / Kelab / Pelanggan / Kereta)</span>
           </div>
           <div class="flex items-center gap-2.5">
             <div class="w-4 h-4 rotate-45 bg-yellow-400 shadow shadow-yellow-400/50"></div>
-            <span class="pl-0.5"><strong>Warna Kuning:</strong> Tali Hubungan (Berlian &amp; Jantung)</span>
+            <span id="lgd-yellow" class="pl-0.5"><strong>Warna Kuning:</strong> Tali Hubungan (Berlian &amp; Jantung)</span>
           </div>
           <div class="flex items-center gap-2.5">
             <div class="w-4 h-4 rounded bg-slate-800 border border-pink-500/50 flex items-center justify-center font-bold text-[9px]">1</div>
-            <span><strong>Token Kardinaliti:</strong> Kad Kecil Angka &amp; Huruf</span>
+            <span id="lgd-token"><strong>Token Kardinaliti:</strong> Kad Kecil Angka &amp; Huruf</span>
           </div>
         </div>
       </div>
@@ -169,13 +179,13 @@
         
         <!-- Scenario Switcher Tabs on top of Simulator -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-950/80 p-3 rounded-xl border border-slate-800 mb-6">
-          <span class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-toggle-on text-pink-500"></i> Pilih Situasi Intervensi:</span>
+          <span id="sit-select-title" class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-toggle-on text-pink-500"></i> Pilih Situasi Intervensi:</span>
           <div class="flex gap-2 w-full sm:w-auto">
             <button id="tab-koku" onclick="switchScenario('koku')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20">
-              <i class="fa-solid fa-users-rectangle mr-1"></i> 1. Kokurikulum (M:N)
+              <i class="fa-solid fa-users-rectangle mr-1"></i> <span id="tab-koku-txt">1. Kokurikulum (M:N)</span>
             </button>
             <button id="tab-sewa" onclick="switchScenario('sewa')" class="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700">
-              <i class="fa-solid fa-car mr-1"></i> 2. Sewa Kereta (M:N)
+              <i class="fa-solid fa-car mr-1"></i> <span id="tab-sewa-txt">2. Sewa Kereta (M:N)</span>
             </button>
           </div>
         </div>
@@ -183,27 +193,27 @@
         <!-- Step Indicator Header -->
         <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6 overflow-x-auto gap-4">
           <div class="flex items-center gap-2 shrink-0">
-            <span class="text-xs md:text-sm text-slate-400 uppercase font-bold">Langkah:</span>
+            <span id="lbl-steps" class="text-xs md:text-sm text-slate-400 uppercase font-bold">Langkah:</span>
           </div>
           <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
             <button id="btn-step-1" onclick="goToStep(1)" class="px-3 py-1.5 rounded-lg font-semibold transition-all bg-pink-500 text-white flex items-center gap-1.5">
               <span class="w-5 h-5 rounded-full bg-white/20 text-[10px] flex items-center justify-center">1</span>
-              Susun Kad
+              <span id="stp-1-btn">Susun Kad</span>
             </button>
             <div class="w-4 h-px bg-slate-800"></div>
             <button id="btn-step-2" onclick="goToStep(2)" class="px-3 py-1.5 rounded-lg font-semibold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700 flex items-center gap-1.5">
               <span class="w-5 h-5 rounded-full bg-slate-700 text-[10px] flex items-center justify-center">2</span>
-              PUMP 1 (Hadapan)
+              <span id="stp-2-btn">PUMP 1 (Hadapan)</span>
             </button>
             <div class="w-4 h-px bg-slate-800"></div>
             <button id="btn-step-3" onclick="goToStep(3)" class="px-3 py-1.5 rounded-lg font-semibold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700 flex items-center gap-1.5">
               <span class="w-5 h-5 rounded-full bg-slate-700 text-[10px] flex items-center justify-center">3</span>
-              PUMP 2 (Belakang)
+              <span id="stp-3-btn">PUMP 2 (Belakang)</span>
             </button>
             <div class="w-4 h-px bg-slate-800"></div>
             <button id="btn-step-4" onclick="goToStep(4)" class="px-3 py-1.5 rounded-lg font-semibold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700 flex items-center gap-1.5">
               <span class="w-5 h-5 rounded-full bg-slate-700 text-[10px] flex items-center justify-center">4</span>
-              Sintesis Akhir
+              <span id="stp-4-btn">Sintesis Akhir</span>
             </button>
           </div>
         </div>
@@ -212,17 +222,15 @@
         <div id="step-instruction" class="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-6">
           <h3 id="inst-title" class="text-pink-400 font-bold text-sm md:text-base mb-1">Langkah 1: Menyediakan Tapak Fizikal</h3>
           <p id="inst-desc" class="text-xs md:text-sm text-slate-300 leading-relaxed">
-            Sediakan dua Kad Entiti utama di atas meja anda. Kad **MURID** di sebelah kiri dan Kad **KELAB** di sebelah kanan. Sambungkan kedua-duanya menggunakan **Tali Hubungan MENYERTAI** bercorak berlian.
+            Sediakan dua Kad Entiti utama di atas meja anda...
           </p>
         </div>
 
         <!-- SIMULATOR BOARD/WORKSPACE -->
         <div class="border border-slate-800 rounded-2xl bg-slate-950 p-6 flex flex-col items-center justify-center relative min-h-[350px] overflow-hidden">
           
-          <!-- Decorative Grid lines to look like a tabletop -->
           <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-35 pointer-events-none"></div>
 
-          <!-- Flow directional helper arrows on top -->
           <div id="flow-arrows" class="absolute top-4 left-0 right-0 flex justify-center items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300">
             <span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20 flex items-center gap-1">
               <i class="fa-solid fa-arrow-right text-[10px]"></i> IMBASAN HADAPAN (PUMP 1)
@@ -234,13 +242,11 @@
             
             <!-- LEFT ENTITY -->
             <div class="flex flex-col items-center gap-3 w-full md:w-1/3">
-              <!-- Entity Card -->
               <div id="card-left" class="w-full h-24 rounded-xl bg-pink-600/90 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-lg border-2 border-pink-400 transition-all duration-300 select-none">
-                <span class="text-[10px] tracking-widest font-normal text-pink-200 mb-1">ENTITI KIRI</span>
+                <span id="lbl-left-ent-tag" class="text-[10px] tracking-widest font-normal text-pink-200 mb-1">ENTITI KIRI</span>
                 <span id="entity-left-name">MURID</span>
               </div>
 
-              <!-- Cardinality Token Container (Left) -->
               <div class="h-16 flex items-center justify-center">
                 <div id="token-left" class="w-14 h-14 rounded-lg bg-slate-900 border-2 border-dashed border-slate-700 flex items-center justify-center font-bold text-2xl text-slate-500 transition-all duration-300">
                   ?
@@ -248,22 +254,19 @@
               </div>
             </div>
 
-            <!-- MIDDLE: RELATIONSHIP (DIAMOND / TALI HUBUNGAN WITH HEART EMBLEM) -->
+            <!-- MIDDLE: RELATIONSHIP -->
             <div class="flex flex-col items-center justify-center relative w-full md:w-1/3 py-4">
-              <!-- Yellow Link Line -->
               <div class="absolute h-1 md:h-1 w-2/3 md:w-full bg-slate-800 z-0"></div>
               <div id="yellow-line-overlay" class="absolute h-1 md:h-1 w-0 bg-yellow-400/80 z-0 transition-all duration-500"></div>
 
-              <!-- Relation Diamond Card with Integrated Animated Heart -->
               <div id="card-middle" class="relative w-28 h-28 rotate-45 bg-yellow-500 text-slate-950 flex items-center justify-center shadow-lg border-2 border-yellow-300 transition-all duration-300 select-none cursor-pointer hover:scale-105 z-10 rounded-lg">
                 <div class="-rotate-45 flex flex-col items-center justify-center text-center leading-tight p-2">
-                  <!-- Animated Pulse Heart SVG inside the Relationship shape -->
                   <div class="heartbeat-slow text-rose-600 mb-1 filter drop-shadow-[0_2px_4px_rgba(225,29,72,0.5)]">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                   </div>
-                  <span class="block text-[8px] tracking-widest font-bold opacity-75 uppercase">Hubungan</span>
+                  <span id="lbl-rel-tag" class="block text-[8px] tracking-widest font-bold opacity-75 uppercase">Hubungan</span>
                   <span id="relation-middle-name" class="font-black text-xs tracking-tight uppercase text-slate-900">MENYERTAI</span>
                 </div>
               </div>
@@ -271,13 +274,11 @@
 
             <!-- RIGHT ENTITY -->
             <div class="flex flex-col items-center gap-3 w-full md:w-1/3">
-              <!-- Entity Card -->
               <div id="card-right" class="w-full h-24 rounded-xl bg-pink-600/90 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-lg border-2 border-pink-400 transition-all duration-300 select-none">
-                <span class="text-[10px] tracking-widest font-normal text-pink-200 mb-1">ENTITI KANAN</span>
+                <span id="lbl-right-ent-tag" class="text-[10px] tracking-widest font-normal text-pink-200 mb-1">ENTITI KANAN</span>
                 <span id="entity-right-name">KELAB</span>
               </div>
 
-              <!-- Cardinality Token Container (Right) -->
               <div class="h-16 flex items-center justify-center">
                 <div id="token-right" class="w-14 h-14 rounded-lg bg-slate-900 border-2 border-dashed border-slate-700 flex items-center justify-center font-bold text-2xl text-slate-500 transition-all duration-300">
                   ?
@@ -287,7 +288,7 @@
 
           </div>
 
-          <!-- Interactive Workspace Helper Controls inside Board -->
+          <!-- Interactive Workspace Helper Controls -->
           <div id="interactive-panel" class="mt-6 w-full max-w-xl bg-slate-900/90 border border-slate-800 rounded-xl p-4 hidden flex-col items-center gap-3 z-10">
             <h4 id="question-text" class="text-sm md:text-base font-bold text-slate-200 text-center">Soalan Interaktif</h4>
             
@@ -303,11 +304,11 @@
         <!-- Navigation Buttons inside the interactive flow -->
         <div class="flex justify-between mt-6 pt-4 border-t border-slate-800">
           <button id="btn-back" onclick="changeStep(-1)" class="px-4 py-2 text-sm font-semibold rounded-xl border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition disabled:opacity-50 disabled:pointer-events-none" disabled>
-            <i class="fa-solid fa-chevron-left mr-1"></i> Kembali
+            <i class="fa-solid fa-chevron-left mr-1"></i> <span id="btn-back-txt">Kembali</span>
           </button>
           
           <button id="btn-next" onclick="changeStep(1)" class="px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5">
-            Seterusnya <i class="fa-solid fa-chevron-right ml-1"></i>
+            <span id="btn-next-txt">Seterusnya</span> <i class="fa-solid fa-chevron-right ml-1"></i>
           </button>
         </div>
 
@@ -317,10 +318,10 @@
 
   </main>
 
-  <!-- Section 2: Panduan Teori & Simulasi "Pump" Bersuara / Visual -->
+  <!-- Section 2: Panduan Teori -->
   <section class="max-w-7xl w-full mx-auto p-4 mb-6">
     <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-rose-950/20 border border-slate-800 rounded-2xl p-6 shadow-xl">
-      <h2 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent mb-4 flex items-center gap-2">
+      <h2 id="sec2-main-title" class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent mb-4 flex items-center gap-2">
         <i class="fa-solid fa-dna text-pink-500"></i> Panduan Teknikal Cardio-DB (Rujukan Guru &amp; Pelajar)
       </h2>
       
@@ -330,95 +331,95 @@
         <div class="bg-slate-950/60 border border-slate-800 p-4.5 rounded-xl flex flex-col gap-2.5">
           <div class="flex items-center gap-2">
             <span class="w-7 h-7 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center font-black">1</span>
-            <h4 class="font-bold text-slate-200">PUMP 1: Imbasan Hadapan</h4>
+            <h4 id="sec2-p1-title" class="font-bold text-slate-200">PUMP 1: Imbasan Hadapan</h4>
           </div>
-          <p class="text-xs md:text-sm text-slate-400">
+          <p id="sec2-p1-desc" class="text-xs md:text-sm text-slate-400">
             Imbas dari <strong class="text-pink-400">Kiri ke Kanan</strong>. Ambil seunit elemen di kiri dan tanya nilai maksimum di sebelah kanan.
           </p>
-          <div class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-pink-300">
+          <div id="sec2-p1-formula" class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-pink-300">
             "Jika saya ambil SEORANG [Kiri], berapakah nilai maksimum [Kanan] yang boleh dikaitkan dengannya?"
           </div>
-          <span class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-right-long text-pink-400"></i> Nilai maksimum: <strong>Banyak (M)</strong></span>
+          <span id="sec2-p1-res" class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-right-long text-pink-400"></i> Nilai maksimum: <strong>Banyak (M)</strong></span>
         </div>
 
         <!-- PUMP 2 Card -->
         <div class="bg-slate-950/60 border border-slate-800 p-4.5 rounded-xl flex flex-col gap-2.5">
           <div class="flex items-center gap-2">
             <span class="w-7 h-7 rounded-lg bg-yellow-500/10 text-yellow-400 flex items-center justify-center font-black">2</span>
-            <h4 class="font-bold text-slate-200">PUMP 2: Imbasan Belakang</h4>
+            <h4 id="sec2-p2-title" class="font-bold text-slate-200">PUMP 2: Imbasan Belakang</h4>
           </div>
-          <p class="text-xs md:text-sm text-slate-400">
+          <p id="sec2-p2-desc" class="text-xs md:text-sm text-slate-400">
             Kekunci kejayaan! Pusing dan berdiri di kanan. Imbas kembali dari <strong class="text-yellow-400">Kanan ke Kiri</strong>.
           </p>
-          <div class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-yellow-300">
+          <div id="sec2-p2-formula" class="bg-slate-900/80 p-2.5 rounded text-xs md:text-sm border border-slate-800 font-mono text-yellow-300">
             "Jika saya ambil SEBUAH [Kanan], berapakah nilai maksimum [Kiri] yang boleh dikaitkan dengannya?"
           </div>
-          <span class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Nilai maksimum: <strong>Banyak (N)</strong></span>
+          <span id="sec2-p2-res" class="text-xs md:text-sm text-slate-300 font-semibold"><i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Nilai maksimum: <strong>Banyak (N)</strong></span>
         </div>
 
         <!-- Sintesis Card -->
         <div class="bg-slate-950/60 border border-slate-800 p-4.5 rounded-xl flex flex-col gap-2.5">
           <div class="flex items-center gap-2">
             <span class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-black">3</span>
-            <h4 class="font-bold text-slate-200">Sintesis Muktamad</h4>
+            <h4 id="sec2-syn-title" class="font-bold text-slate-200">Sintesis Muktamad</h4>
           </div>
-          <p class="text-xs md:text-sm text-slate-400">
+          <p id="sec2-syn-desc" class="text-xs md:text-sm text-slate-400">
             Ambil keputusan maksimum daripada kedua-dua PUMP. Jangan cantum di tengah jalan, bandingkan hasil akhir!
           </p>
-          <div class="bg-emerald-950/20 p-2.5 rounded text-xs md:text-sm border border-emerald-500/20 text-emerald-300">
+          <div id="sec2-syn-box" class="bg-emerald-950/20 p-2.5 rounded text-xs md:text-sm border border-emerald-500/20 text-emerald-300">
             Sisi Kiri = M (Banyak)<br>
             Sisi Kanan = N (Banyak)
           </div>
-          <span class="text-xs md:text-sm text-emerald-300 font-bold"><i class="fa-solid fa-check-double"></i> Hubungan Muktamad: Banyak-ke-Banyak (M:N)</span>
+          <span id="sec2-syn-res" class="text-xs md:text-sm text-emerald-300 font-bold"><i class="fa-solid fa-check-double"></i> Hubungan Muktamad: Banyak-ke-Banyak (M:N)</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Kuiz Pengukuhan Miskonsepsi (Intervensi Tambahan) -->
+  <!-- Section 3: Kuiz Pengukuhan -->
   <section id="pajsk-quiz" class="max-w-7xl w-full mx-auto p-4 mb-12">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
       <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-yellow-500/5 rounded-full blur-3xl"></div>
       
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2">
+          <h2 id="qz-header-title" class="text-lg md:text-xl font-bold text-slate-200 flex items-center gap-2">
             <i class="fa-solid fa-graduation-cap text-yellow-400"></i> Kuiz Intervensi Pintar (Tingkatan 5)
           </h2>
-          <p class="text-xs md:text-sm text-slate-400">Selesaikan situasi mengikut tahap keupayaan anda untuk menguasai pangkalan data sepenuhnya!</p>
+          <p id="qz-header-desc" class="text-xs md:text-sm text-slate-400">Selesaikan situasi mengikut tahap keupayaan anda untuk menguasai pangkalan data sepenuhnya!</p>
         </div>
         <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-xs md:text-sm text-slate-300 flex items-center gap-1.5">
-          <i class="fa-solid fa-star text-yellow-400"></i> Markah Skor: <span id="quiz-score" class="font-bold text-yellow-400">0 / 5</span>
+          <i class="fa-solid fa-star text-yellow-400"></i> <span id="qz-score-lbl">Markah Skor:</span> <span id="quiz-score" class="font-bold text-yellow-400">0 / 5</span>
         </div>
       </div>
 
       <!-- Quiz Body Wrapper -->
       <div id="quiz-container" class="space-y-6">
         
-        <!-- Soalan 1: TAHAP RENDAH / LEMAH -->
+        <!-- Soalan 1: TAHAP RENDAH -->
         <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 transition hover:border-slate-700">
           <div class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-blue-900/40 border border-blue-500/40 flex items-center justify-center font-bold text-xs text-blue-300 shrink-0">1</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-blue-500/10 text-blue-400 rounded border border-blue-500/20">Tahap Rendah (Asas)</span>
+                <span id="q1-tag" class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-blue-500/10 text-blue-400 rounded border border-blue-500/20">Tahap Rendah (Asas)</span>
               </div>
-              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 id="q1-stem" class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Setiap <span class="text-pink-300">Murid</span> dibekalkan dengan satu <span class="text-yellow-300">Kad Matrik</span> unik oleh pihak sekolah. Seorang murid hanya boleh memiliki satu kad matrik, manakala satu kad matrik itu pula hanya dimiliki oleh seorang murid khusus.
                 <br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Aplikasi Cardio-DB: PUMP 1 (1 murid -> 1 kad) | PUMP 2 (1 kad -> 1 murid).</span>
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                 <button onclick="checkQuiz(1, '1:1', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu (1:1)</span>
+                  <span id="q1-opt-a">A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(1, '1:M', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak (1:M)</span>
+                  <span id="q1-opt-b">B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(1, 'M:N', this)" class="q-opt-1 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak (M:N)</span>
+                  <span id="q1-opt-c">C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
@@ -433,23 +434,23 @@
             <span class="w-6 h-6 rounded-full bg-yellow-900/40 border border-yellow-500/40 flex items-center justify-center font-bold text-xs text-yellow-300 shrink-0">2</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-yellow-500/10 text-yellow-400 rounded border border-yellow-500/20">Tahap Sederhana</span>
+                <span id="q2-tag" class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-yellow-500/10 text-yellow-400 rounded border border-yellow-500/20">Tahap Sederhana</span>
               </div>
-              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 id="q2-stem" class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Pihak hospital merekodkan kemasukan <span class="text-pink-300">Pesakit</span> ke dalam <span class="text-yellow-300">Wad</span>. Pada satu-satu masa, seorang pesakit hanya ditempatkan di sebuah wad sahaja. Namun, sebuah wad boleh menampung ramai pesakit yang menghidap penyakit yang sama.
                 <br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Petua: Gunakan PUMP 1 (Pesakit -> Wad) dan PUMP 2 (Wad -> Pesakit) secara berasingan!</span>
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                 <button onclick="checkQuiz(2, '1:1', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu (1:1)</span>
+                  <span id="q2-opt-a">A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(2, '1:M', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak (1:M)</span>
+                  <span id="q2-opt-b">B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(2, 'M:N', this)" class="q-opt-2 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak (M:N)</span>
+                  <span id="q2-opt-c">C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
@@ -458,28 +459,28 @@
           </div>
         </div>
 
-        <!-- Soalan 3: TAHAP TINGGI (SITUASI SEWA KERETA) -->
+        <!-- Soalan 3: TAHAP TINGGI -->
         <div class="bg-slate-950/60 p-5 rounded-xl border border-rose-500/20 bg-gradient-to-tr from-slate-950 to-rose-950/10 transition hover:border-pink-500/30">
           <div class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-pink-900/40 border border-pink-500/40 flex items-center justify-center font-bold text-xs text-pink-300 shrink-0">3</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-pink-500/10 text-pink-400 rounded border border-pink-500/20">Tahap Tinggi (KBAT - Situasi Sewaan)</span>
+                <span id="q3-tag" class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-pink-500/10 text-pink-400 rounded border border-pink-500/20">Tahap Tinggi (KBAT - Situasi Sewaan)</span>
               </div>
-              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 id="q3-stem" class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Sebuah agensi pelancongan merekodkan maklumat pelanggan dan kenderaan yang disewa. Seorang <span class="text-pink-300">Pelanggan</span> boleh menyewa beberapa buah <span class="text-yellow-300">Kereta</span> sepanjang tempoh keahlian mereka. Seterusnya, sebuah kereta sewaan pula boleh disewa oleh ramai pelanggan pada tarikh yang berlainan. Apakah hubungan muktamad antara PELANGGAN dan KERETA?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                 <button onclick="checkQuiz(3, '1:1', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu (1:1)</span>
+                  <span id="q3-opt-a">A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(3, '1:M', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak (1:M)</span>
+                  <span id="q3-opt-b">B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(3, 'M:N', this)" class="q-opt-3 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak (M:N)</span>
+                  <span id="q3-opt-c">C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
@@ -488,28 +489,28 @@
           </div>
         </div>
 
-        <!-- Soalan 4: PEKERJA & PROJEK (KBAT TAMBAHAN) -->
+        <!-- Soalan 4: PEKERJA & PROJEK -->
         <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 transition hover:border-slate-700">
           <div class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-slate-300 shrink-0">4</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-slate-800 text-slate-400 rounded border border-slate-700">Sains Komputer KBAT</span>
+                <span id="q4-tag" class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-slate-800 text-slate-400 rounded border border-slate-700">Sains Komputer KBAT</span>
               </div>
-              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 id="q4-stem" class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Situasi: Setiap <span class="text-pink-300">Pekerja</span> MegaHoldings boleh ditugaskan untuk menyumbang dalam beberapa <span class="text-yellow-300">Projek</span> serentak. Pada masa yang sama, setiap projek pula dilaksanakan oleh sekumpulan pekerja yang mempunyai pelbagai kepakaran. Berapakah kardinaliti hubungannya?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                 <button onclick="checkQuiz(4, '1:1', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Satu-ke-Satu (1:1)</span>
+                  <span id="q4-opt-a">A. Satu-ke-Satu (1:1)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(4, '1:M', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Satu-ke-Banyak (1:M)</span>
+                  <span id="q4-opt-b">B. Satu-ke-Banyak (1:M)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(4, 'M:N', this)" class="q-opt-4 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>C. Banyak-ke-Banyak (M:N)</span>
+                  <span id="q4-opt-c">C. Banyak-ke-Banyak (M:N)</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
@@ -518,24 +519,24 @@
           </div>
         </div>
 
-        <!-- Soalan 5: REFLEKSI TEKNIK -->
+        <!-- Soalan 5: REFLEKSI -->
         <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 transition hover:border-slate-700">
           <div class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-emerald-900/40 border border-emerald-500/40 flex items-center justify-center font-bold text-xs text-emerald-300 shrink-0">5</span>
             <div class="flex-grow">
               <div class="flex items-center gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Refleksi Metakognitif</span>
+                <span id="q5-tag" class="px-2 py-0.5 text-[10px] uppercase font-extrabold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Refleksi Metakognitif</span>
               </div>
-              <h4 class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
+              <h4 id="q5-stem" class="text-sm md:text-base font-bold text-slate-200 leading-relaxed mb-3">
                 Mengapakah kita perlu melakukan <span class="text-yellow-400 font-bold">PUMP 2 (Imbasan Belakang)</span> dalam Teknik Cardio-DB?
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                 <button onclick="checkQuiz(5, 'A', this)" class="q-opt-5 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>A. Kerana imbasan pertama sahaja boleh menyebabkan kita terlepas pandang kekangan arah bertentangan.</span>
+                  <span id="q5-opt-a">A. Kerana imbasan pertama sahaja boleh menyebabkan kita terlepas pandang kekangan arah bertentangan.</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
                 <button onclick="checkQuiz(5, 'B', this)" class="q-opt-5 p-3 text-xs md:text-sm text-left rounded-lg border border-slate-800 bg-slate-900/40 hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-between">
-                  <span>B. Sekadar hiasan untuk menyedapkan aliran reka bentuk pangkalan data sahaja.</span>
+                  <span id="q5-opt-b">B. Sekadar hiasan untuk menyedapkan aliran reka bentuk pangkalan data sahaja.</span>
                   <i class="fa-solid fa-circle text-[8px] text-slate-600"></i>
                 </button>
               </div>
@@ -551,18 +552,17 @@
   <!-- Footer -->
   <footer class="mt-auto border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p>&copy; 2026 Bahan Bantu Mengajar Sains Komputer Tingkatan 5 (Teknik Cardio-DB).</p>
+      <p id="ftr-copy">&copy; 2026 Bahan Bantu Mengajar Sains Komputer Tingkatan 5 (Teknik Cardio-DB).</p>
       <div class="flex items-center gap-4">
-        <a href="#step-instruction" class="hover:text-slate-300 transition">Cara Pelaksanaan</a>
+        <a id="ftr-link-1" href="#step-instruction" class="hover:text-slate-300 transition">Cara Pelaksanaan</a>
         <span>&bull;</span>
-        <a href="#pajsk-quiz" class="hover:text-slate-300 transition">Uji Kefahaman</a>
+        <a id="ftr-link-2" href="#pajsk-quiz" class="hover:text-slate-300 transition">Uji Kefahaman</a>
       </div>
     </div>
   </footer>
 
-  <!-- Sound Feedback (Generated via Audio Synthesis Web API) -->
+  <!-- Sound Feedback -->
   <script>
-    // Audio synthesis to play simple digital feedback sounds (No external files needed)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     
     function playBeep(type) {
@@ -574,9 +574,9 @@
         
         if (type === 'success') {
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(440, audioCtx.currentTime); // A4
-          osc.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.1); // C#5
-          osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.2); // E5
+          osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+          osc.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.1);
+          osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.2);
           gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
           gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
           osc.start();
@@ -597,7 +597,6 @@
           osc.start();
           osc.stop(audioCtx.currentTime + 0.05);
         } else if (type === 'heartbeat') {
-          // Double thump
           osc.type = 'sine';
           osc.frequency.setValueAtTime(80, audioCtx.currentTime);
           gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
@@ -624,59 +623,369 @@
     }
   </script>
 
-  <!-- Core Simulator Logic with Dynamic Scenarios -->
+  <!-- Internationalization (i18n) Dictionary & Logic -->
   <script>
-    let currentScenario = 'koku'; // Default scenario
+    let currentLang = 'ms';
+
+    const langData = {
+      ms: {
+        subtitle: "Bahan Bantu Mengajar (BBM) Interaktif Kardinaliti Hubungan",
+        badge: "Mod Intervensi: Tingkatan 5",
+        lblLang: "Bahasa:",
+        lblFont: "Saiz:",
+        introTitle: "Apa itu Cardio-DB?",
+        introDesc: `Teknik <strong class="text-pink-400">Cardio-DB</strong> diinspirasikan daripada mekanik mengepam jantung (<span class="italic text-rose-300">double pump imbasan dua hala</span>) untuk menyelamatkan murid daripada perangkap miskonsepsi tegar ketika menentukan reka bentuk pangkalan data.`,
+        miscTitle: "Miskonsepsi Tegar Murid",
+        miscDesc: `"Apabila murid membaca ayat <em>'Setiap murid menyertai beberapa kelab'</em> atau melihat satu situasi sewaan, mereka terus membuat kesimpulan hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong> tanpa berpusing balik mengepam imbasan arah bertentangan!"`,
+        sitCurrentTitle: "Situasi Semasa",
+        sitBadgeKoku: "M:N Kes",
+        sitBadgeSewa: "Situasi Sewa",
+        sitATitle: "Senario A: Kokurikulum (PAJSK)",
+        sitABody: `"Sistem Pengurusan Kokurikulum SMK Tasik Perdana memerlukan pangkalan data untuk merekod maklumat pendaftaran kelab. <span class="text-yellow-300 font-medium underline">Setiap murid boleh menyertai beberapa kelab sukan</span>. Seterusnya, <span class="text-pink-300 font-medium underline">setiap kelab sukan pula boleh dianggotai oleh ramai murid</span>."`,
+        sitBTitle: "Senario B: Sistem Sewa Kereta",
+        sitBBody: `"Satu pangkalan data sistem pengurusan tempahan kenderaan merekodkan maklumat pelanggan dan kereta yang disewa. <span class="text-yellow-300 font-medium underline">Seorang pelanggan dibenarkan membuat sewaan beberapa buah kereta</span> yang berbeza mengikut kesesuaian tarikh. Manakala, <span class="text-pink-300 font-medium underline">setiap kereta sewaan pula boleh disewa oleh ramai pelanggan</span> secara berasingan."`,
+        lgdTitle: "Petunjuk Warna BBM Fizikal",
+        lgdPink: "<strong>Warna Merah Jambu:</strong> Kad Entiti (Murid / Kelab / Pelanggan / Kereta)",
+        lgdYellow: "<strong>Warna Kuning:</strong> Tali Hubungan (Berlian & Jantung)",
+        lgdToken: "<strong>Token Kardinaliti:</strong> Kad Kecil Angka & Huruf",
+        sitSelectTitle: "Pilih Situasi Intervensi:",
+        tabKokuTxt: "1. Kokurikulum (M:N)",
+        tabSewaTxt: "2. Sewa Kereta (M:N)",
+        lblSteps: "Langkah:",
+        stp1Btn: "Susun Kad",
+        stp2Btn: "PUMP 1 (Hadapan)",
+        stp3Btn: "PUMP 2 (Belakang)",
+        stp4Btn: "Sintesis Akhir",
+        lblLeftEntTag: "ENTITI KIRI",
+        lblRightEntTag: "ENTITI KANAN",
+        lblRelTag: "Hubungan",
+        btnBackTxt: "Kembali",
+        btnNextTxt: "Seterusnya",
+        sec2MainTitle: "Panduan Teknikal Cardio-DB (Rujukan Guru & Pelajar)",
+        sec2P1Title: "PUMP 1: Imbasan Hadapan",
+        sec2P1Desc: `Imbas dari <strong class="text-pink-400">Kiri ke Kanan</strong>. Ambil seunit elemen di kiri dan tanya nilai maksimum di sebelah kanan.`,
+        sec2P1Formula: `"Jika saya ambil SEORANG [Kiri], berapakah nilai maksimum [Kanan] yang boleh dikaitkan dengannya?"`,
+        sec2P1Res: `<i class="fa-solid fa-arrow-right-long text-pink-400"></i> Nilai maksimum: <strong>Banyak (M)</strong>`,
+        sec2P2Title: "PUMP 2: Imbasan Belakang",
+        sec2P2Desc: `Kekunci kejayaan! Pusing dan berdiri di kanan. Imbas kembali dari <strong class="text-yellow-400">Kanan ke Kiri</strong>.`,
+        sec2P2Formula: `"Jika saya ambil SEBUAH [Kanan], berapakah nilai maksimum [Kiri] yang boleh dikaitkan dengannya?"`,
+        sec2P2Res: `<i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Nilai maksimum: <strong>Banyak (N)</strong>`,
+        sec2SynTitle: "Sintesis Muktamad",
+        sec2SynDesc: "Ambil keputusan maksimum daripada kedua-dua PUMP. Jangan cantum di tengah jalan, bandingkan hasil akhir!",
+        sec2SynBox: "Sisi Kiri = M (Banyak)<br>Sisi Kanan = N (Banyak)",
+        sec2SynRes: `<i class="fa-solid fa-check-double"></i> Hubungan Muktamad: Banyak-ke-Banyak (M:N)`,
+        qzHeaderTitle: "Kuiz Intervensi Pintar (Tingkatan 5)",
+        qzHeaderDesc: "Selesaikan situasi mengikut tahap keupayaan anda untuk menguasai pangkalan data sepenuhnya!",
+        qzScoreLbl: "Markah Skor:",
+        q1Tag: "Tahap Rendah (Asas)",
+        q1Stem: `Situasi: Setiap <span class="text-pink-300">Murid</span> dibekalkan dengan satu <span class="text-yellow-300">Kad Matrik</span> unik oleh pihak sekolah. Seorang murid hanya boleh memiliki satu kad matrik, manakala satu kad matrik itu pula hanya dimiliki oleh seorang murid khusus.<br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Aplikasi Cardio-DB: PUMP 1 (1 murid -> 1 kad) | PUMP 2 (1 kad -> 1 murid).</span>`,
+        q1OptA: "A. Satu-ke-Satu (1:1)",
+        q1OptB: "B. Satu-ke-Banyak (1:M)",
+        q1OptC: "C. Banyak-ke-Banyak (M:N)",
+        q2Tag: "Tahap Sederhana",
+        q2Stem: `Situasi: Pihak hospital merekodkan kemasukan <span class="text-pink-300">Pesakit</span> ke dalam <span class="text-yellow-300">Wad</span>. Pada satu-satu masa, seorang pesakit hanya ditempatkan di sebuah wad sahaja. Namun, sebuah wad boleh menampung ramai pesakit yang menghidap penyakit yang sama.<br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Petua: Gunakan PUMP 1 (Pesakit -> Wad) dan PUMP 2 (Wad -> Pesakit) secara berasingan!</span>`,
+        q2OptA: "A. Satu-ke-Satu (1:1)",
+        q2OptB: "B. Satu-ke-Banyak (1:M)",
+        q2OptC: "C. Banyak-ke-Banyak (M:N)",
+        q3Tag: "Tahap Tinggi (KBAT - Situasi Sewaan)",
+        q3Stem: `Sebuah agensi pelancongan merekodkan maklumat pelanggan dan kenderaan yang disewa. Seorang <span class="text-pink-300">Pelanggan</span> boleh menyewa beberapa buah <span class="text-yellow-300">Kereta</span> sepanjang tempoh keahlian mereka. Seterusnya, sebuah kereta sewaan pula boleh disewa oleh ramai pelanggan pada tarikh yang berlainan. Apakah hubungan muktamad antara PELANGGAN dan KERETA?`,
+        q3OptA: "A. Satu-ke-Satu (1:1)",
+        q3OptB: "B. Satu-ke-Banyak (1:M)",
+        q3OptC: "C. Banyak-ke-Banyak (M:N)",
+        q4Tag: "Sains Komputer KBAT",
+        q4Stem: `Situasi: Setiap <span class="text-pink-300">Pekerja</span> MegaHoldings boleh ditugaskan untuk menyumbang dalam beberapa <span class="text-yellow-300">Projek</span> serentak. Pada masa yang sama, setiap projek pula dilaksanakan oleh sekumpulan pekerja yang mempunyai pelbagai kepakaran. Berapakah kardinaliti hubungannya?`,
+        q4OptA: "A. Satu-ke-Satu (1:1)",
+        q4OptB: "B. Satu-ke-Banyak (1:M)",
+        q4OptC: "C. Banyak-ke-Banyak (M:N)",
+        q5Tag: "Refleksi Metakognitif",
+        q5Stem: `Mengapakah kita perlu melakukan <span class="text-yellow-400 font-bold">PUMP 2 (Imbasan Belakang)</span> dalam Teknik Cardio-DB?`,
+        q5OptA: "A. Kerana imbasan pertama sahaja boleh menyebabkan kita terlepas pandang kekangan arah bertentangan.",
+        q5OptB: "B. Sekadar hiasan untuk menyedapkan aliran reka bentuk pangkalan data sahaja.",
+        ftrCopy: "&copy; 2026 Bahan Bantu Mengajar Sains Komputer Tingkatan 5 (Teknik Cardio-DB).",
+        ftrLink1: "Cara Pelaksanaan",
+        ftrLink2: "Uji Kefahaman"
+      },
+      en: {
+        subtitle: "Interactive Teaching Aid (BBM) for Relationship Cardinality",
+        badge: "Intervention Mode: Form 5",
+        lblLang: "Language:",
+        lblFont: "Size:",
+        introTitle: "What is Cardio-DB?",
+        introDesc: `The <strong class="text-pink-400">Cardio-DB</strong> technique is inspired by heart pumping mechanics (<span class="italic text-rose-300">two-way double pump scanning</span>) to rescue students from stubborn misconceptions when designing databases.`,
+        miscTitle: "Stubborn Student Misconception",
+        miscDesc: `"When students read statements like <em>'Each student joins several clubs'</em> or look at a rental situation, they immediately conclude the relationship is <strong>One-to-Many (1:M)</strong> without turning back to scan in the opposite direction!"`,
+        sitCurrentTitle: "Current Scenario",
+        sitBadgeKoku: "M:N Case",
+        sitBadgeSewa: "Rental Situation",
+        sitATitle: "Scenario A: Co-Curriculum (PAJSK)",
+        sitABody: `"SMK Tasik Perdana Co-Curriculum Management System requires a database to record club registration. <span class="text-yellow-300 font-medium underline">Each student can join several sports clubs</span>. Furthermore, <span class="text-pink-300 font-medium underline">each sports club can be joined by many students</span>."`,
+        sitBTitle: "Scenario B: Car Rental System",
+        sitBBody: `"A vehicle booking management database records details of customers and rented cars. <span class="text-yellow-300 font-medium underline">A customer is allowed to rent several different cars</span> across different dates. Meanwhile, <span class="text-pink-300 font-medium underline">each rental car can be rented by many customers</span> separately."`,
+        lgdTitle: "Physical BBM Color Legend",
+        lgdPink: "<strong>Pink Color:</strong> Entity Cards (Student / Club / Customer / Car)",
+        lgdYellow: "<strong>Yellow Color:</strong> Relationship Link (Diamond & Heart)",
+        lgdToken: "<strong>Cardinality Token:</strong> Small Number & Letter Cards",
+        sitSelectTitle: "Select Intervention Scenario:",
+        tabKokuTxt: "1. Co-Curriculum (M:N)",
+        tabSewaTxt: "2. Car Rental (M:N)",
+        lblSteps: "Steps:",
+        stp1Btn: "Arrange Cards",
+        stp2Btn: "PUMP 1 (Forward)",
+        stp3Btn: "PUMP 2 (Backward)",
+        stp4Btn: "Final Synthesis",
+        lblLeftEntTag: "LEFT ENTITY",
+        lblRightEntTag: "RIGHT ENTITY",
+        lblRelTag: "Relationship",
+        btnBackTxt: "Back",
+        btnNextTxt: "Next",
+        sec2MainTitle: "Cardio-DB Technical Guide (Teacher & Student Reference)",
+        sec2P1Title: "PUMP 1: Forward Scan",
+        sec2P1Desc: `Scan from <strong class="text-pink-400">Left to Right</strong>. Take one element on the left and ask for the maximum value on the right.`,
+        sec2P1Formula: `"If I take ONE [Left], what is the maximum value of [Right] that can be associated with it?"`,
+        sec2P1Res: `<i class="fa-solid fa-arrow-right-long text-pink-400"></i> Maximum value: <strong>Many (M)</strong>`,
+        sec2P2Title: "PUMP 2: Backward Scan",
+        sec2P2Desc: `Key to success! Turn around and stand on the right. Scan back from <strong class="text-yellow-400">Right to Left</strong>.`,
+        sec2P2Formula: `"If I take ONE [Right], what is the maximum value of [Left] that can be associated with it?"`,
+        sec2P2Res: `<i class="fa-solid fa-arrow-left-long text-yellow-400"></i> Maximum value: <strong>Many (N)</strong>`,
+        sec2SynTitle: "Final Synthesis",
+        sec2SynDesc: "Take the maximum result from both PUMPs. Do not combine midway, compare the final outputs!",
+        sec2SynBox: "Left Side = M (Many)<br>Right Side = N (Many)",
+        sec2SynRes: `<i class="fa-solid fa-check-double"></i> Final Relationship: Many-to-Many (M:N)`,
+        qzHeaderTitle: "Smart Intervention Quiz (Form 5)",
+        qzHeaderDesc: "Solve situations according to your ability level to master database design completely!",
+        qzScoreLbl: "Total Score:",
+        q1Tag: "Low Level (Basic)",
+        q1Stem: `Situation: Each <span class="text-pink-300">Student</span> is issued one unique <span class="text-yellow-300">Matrix Card</span> by the school. A student can only hold one matrix card, while a matrix card is only owned by one specific student.<br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Cardio-DB Application: PUMP 1 (1 student -> 1 card) | PUMP 2 (1 card -> 1 student).</span>`,
+        q1OptA: "A. One-to-One (1:1)",
+        q1OptB: "B. One-to-Many (1:M)",
+        q1OptC: "C. Many-to-Many (M:N)",
+        q2Tag: "Medium Level",
+        q2Stem: `Situation: A hospital records the admission of <span class="text-pink-300">Patients</span> into <span class="text-yellow-300">Wards</span>. At any one time, a patient is assigned to only one ward. However, a ward can accommodate many patients.<br><span class="text-xs md:text-sm text-slate-400 mt-1 block">Tip: Use PUMP 1 (Patient -> Ward) and PUMP 2 (Ward -> Patient) independently!</span>`,
+        q2OptA: "A. One-to-One (1:1)",
+        q2OptB: "B. One-to-Many (1:M)",
+        q2OptC: "C. Many-to-Many (M:N)",
+        q3Tag: "High Level (HOTS - Rental Situation)",
+        q3Stem: `A travel agency records customer information and rented vehicles. A <span class="text-pink-300">Customer</span> can rent several <span class="text-yellow-300">Cars</span> throughout their membership. Furthermore, a rental car can be rented by many customers on different dates. What is the final relationship between CUSTOMER and CAR?`,
+        q3OptA: "A. One-to-One (1:1)",
+        q3OptB: "B. One-to-Many (1:M)",
+        q3OptC: "C. Many-to-Many (M:N)",
+        q4Tag: "Computer Science HOTS",
+        q4Stem: `Situation: Each MegaHoldings <span class="text-pink-300">Employee</span> can be assigned to contribute to several <span class="text-yellow-300">Projects</span> simultaneously. At the same time, each project is executed by a group of employees. What is the cardinality of this relationship?`,
+        q4OptA: "A. One-to-One (1:1)",
+        q4OptB: "B. One-to-Many (1:M)",
+        q4OptC: "C. Many-to-Many (M:N)",
+        q5Tag: "Metacognitive Reflection",
+        q5Stem: `Why do we need to perform <span class="text-yellow-400 font-bold">PUMP 2 (Backward Scan)</span> in the Cardio-DB Technique?`,
+        q5OptA: "A. Because relying on the first scan alone may cause us to overlook constraints in the opposite direction.",
+        q5OptB: "B. Just for decoration to make the database design flow look nice.",
+        ftrCopy: "&copy; 2026 Computer Science Form 5 Teaching Aid (Cardio-DB Technique).",
+        ftrLink1: "Implementation Guide",
+        ftrLink2: "Test Knowledge"
+      }
+    };
+
+    function changeLanguage(lang) {
+      playBeep('click');
+      currentLang = lang;
+
+      // Update button styling
+      document.getElementById('lang-ms').className = lang === 'ms' 
+        ? "px-2.5 py-1 rounded text-xs font-bold bg-pink-500 text-white shadow shadow-pink-500/20 transition"
+        : "px-2.5 py-1 rounded text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700 transition";
+      
+      document.getElementById('lang-en').className = lang === 'en' 
+        ? "px-2.5 py-1 rounded text-xs font-bold bg-pink-500 text-white shadow shadow-pink-500/20 transition"
+        : "px-2.5 py-1 rounded text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700 transition";
+
+      // Translate static DOM elements
+      const dict = langData[lang];
+
+      document.getElementById('hdr-subtitle').innerHTML = dict.subtitle;
+      document.getElementById('hdr-badge').innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> ${dict.badge}`;
+      document.getElementById('lbl-lang').innerText = dict.lblLang;
+      document.getElementById('lbl-fontsize').innerText = dict.lblFont;
+
+      document.getElementById('intro-title').innerHTML = `<i class="fa-solid fa-circle-info text-pink-400"></i> ${dict.introTitle}`;
+      document.getElementById('intro-desc').innerHTML = dict.introDesc;
+      document.getElementById('misc-title').innerText = dict.miscTitle;
+      document.getElementById('misc-desc').innerHTML = dict.miscDesc;
+
+      document.getElementById('sit-current-title').innerHTML = `<i class="fa-solid fa-file-invoice text-yellow-400"></i> ${dict.sitCurrentTitle}`;
+      document.getElementById('situasi-badge').innerText = currentScenario === 'koku' ? dict.sitBadgeKoku : dict.sitBadgeSewa;
+      document.getElementById('sit-a-title').innerText = dict.sitATitle;
+      document.getElementById('sit-a-body').innerHTML = dict.sitABody;
+      document.getElementById('sit-b-title').innerText = dict.sitBTitle;
+      document.getElementById('sit-b-body').innerHTML = dict.sitBBody;
+
+      document.getElementById('lgd-title').innerText = dict.lgdTitle;
+      document.getElementById('lgd-pink').innerHTML = dict.lgdPink;
+      document.getElementById('lgd-yellow').innerHTML = dict.lgdYellow;
+      document.getElementById('lgd-token').innerHTML = dict.lgdToken;
+
+      document.getElementById('sit-select-title').innerHTML = `<i class="fa-solid fa-toggle-on text-pink-500"></i> ${dict.sitSelectTitle}`;
+      document.getElementById('tab-koku-txt').innerText = dict.tabKokuTxt;
+      document.getElementById('tab-sewa-txt').innerText = dict.tabSewaTxt;
+      document.getElementById('lbl-steps').innerText = dict.lblSteps;
+
+      document.getElementById('stp-1-btn').innerText = dict.stp1Btn;
+      document.getElementById('stp-2-btn').innerText = dict.stp2Btn;
+      document.getElementById('stp-3-btn').innerText = dict.stp3Btn;
+      document.getElementById('stp-4-btn').innerText = dict.stp4Btn;
+
+      document.getElementById('lbl-left-ent-tag').innerText = dict.lblLeftEntTag;
+      document.getElementById('lbl-right-ent-tag').innerText = dict.lblRightEntTag;
+      document.getElementById('lbl-rel-tag').innerText = dict.lblRelTag;
+      document.getElementById('btn-back-txt').innerText = dict.btnBackTxt;
+
+      // Section 2
+      document.getElementById('sec2-main-title').innerHTML = `<i class="fa-solid fa-dna text-pink-500"></i> ${dict.sec2MainTitle}`;
+      document.getElementById('sec2-p1-title').innerText = dict.sec2P1Title;
+      document.getElementById('sec2-p1-desc').innerHTML = dict.sec2P1Desc;
+      document.getElementById('sec2-p1-formula').innerText = dict.sec2P1Formula;
+      document.getElementById('sec2-p1-res').innerHTML = dict.sec2P1Res;
+
+      document.getElementById('sec2-p2-title').innerText = dict.sec2P2Title;
+      document.getElementById('sec2-p2-desc').innerHTML = dict.sec2P2Desc;
+      document.getElementById('sec2-p2-formula').innerText = dict.sec2P2Formula;
+      document.getElementById('sec2-p2-res').innerHTML = dict.sec2P2Res;
+
+      document.getElementById('sec2-syn-title').innerText = dict.sec2SynTitle;
+      document.getElementById('sec2-syn-desc').innerText = dict.sec2SynDesc;
+      document.getElementById('sec2-syn-box').innerHTML = dict.sec2SynBox;
+      document.getElementById('sec2-syn-res').innerHTML = dict.sec2SynRes;
+
+      // Section 3 (Quiz)
+      document.getElementById('qz-header-title').innerHTML = `<i class="fa-solid fa-graduation-cap text-yellow-400"></i> ${dict.qzHeaderTitle}`;
+      document.getElementById('qz-header-desc').innerText = dict.qzHeaderDesc;
+      document.getElementById('qz-score-lbl').innerText = dict.qzScoreLbl;
+
+      document.getElementById('q1-tag').innerText = dict.q1Tag;
+      document.getElementById('q1-stem').innerHTML = dict.q1Stem;
+      document.getElementById('q1-opt-a').innerText = dict.q1OptA;
+      document.getElementById('q1-opt-b').innerText = dict.q1OptB;
+      document.getElementById('q1-opt-c').innerText = dict.q1OptC;
+
+      document.getElementById('q2-tag').innerText = dict.q2Tag;
+      document.getElementById('q2-stem').innerHTML = dict.q2Stem;
+      document.getElementById('q2-opt-a').innerText = dict.q2OptA;
+      document.getElementById('q2-opt-b').innerText = dict.q2OptB;
+      document.getElementById('q2-opt-c').innerText = dict.q2OptC;
+
+      document.getElementById('q3-tag').innerText = dict.q3Tag;
+      document.getElementById('q3-stem').innerHTML = dict.q3Stem;
+      document.getElementById('q3-opt-a').innerText = dict.q3OptA;
+      document.getElementById('q3-opt-b').innerText = dict.q3OptB;
+      document.getElementById('q3-opt-c').innerText = dict.q3OptC;
+
+      document.getElementById('q4-tag').innerText = dict.q4Tag;
+      document.getElementById('q4-stem').innerHTML = dict.q4Stem;
+      document.getElementById('q4-opt-a').innerText = dict.q4OptA;
+      document.getElementById('q4-opt-b').innerText = dict.q4OptB;
+      document.getElementById('q4-opt-c').innerText = dict.q4OptC;
+
+      document.getElementById('q5-tag').innerText = dict.q5Tag;
+      document.getElementById('q5-stem').innerHTML = dict.q5Stem;
+      document.getElementById('q5-opt-a').innerText = dict.q5OptA;
+      document.getElementById('q5-opt-b').innerText = dict.q5OptB;
+
+      document.getElementById('ftr-copy').innerHTML = dict.ftrCopy;
+      document.getElementById('ftr-link-1').innerText = dict.ftrLink1;
+      document.getElementById('ftr-link-2').innerText = dict.ftrLink2;
+
+      // Refresh dynamic simulator content
+      updateUI();
+    }
+  </script>
+
+  <!-- Core Simulator Logic with Dynamic Scenarios & Language Support -->
+  <script>
+    let currentScenario = 'koku';
     let currentStep = 1;
     let maxReachedStep = 1;
     
-    // Step states to check completion
-    let stepStates = {
-      1: true, // Auto complete
-      2: false, // Wait for choice
-      3: false, // Wait for choice
-      4: false  // Finished
-    };
+    let stepStates = { 1: true, 2: false, 3: false, 4: false };
 
-    // Scenario Configuration Map
+    // Dynamic Scenario Dictionary
     const scenarios = {
       koku: {
-        leftEntity: "MURID",
-        rightEntity: "KELAB",
-        relation: "MENYERTAI",
-        p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Murid (contohnya: Ali)</span>, adakah Ali boleh menyertai hanya SATU kelab atau BANYAK kelab?`,
-        p1_opt_1_desc: "Satu Kelab Sahaja",
-        p1_opt_M_desc: "Beberapa Kelab",
-        p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Bijak! Ali boleh menyertai beberapa (BANYAK) kelab. Kita letak token M di sebelah MURID.",
-        p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba lagi. Mengikut situasi, murid 'boleh menyertai beberapa kelab' sukan.",
-        
-        p2_question: `Jika anda mengambil <span class="text-yellow-400 font-bold underline">SEBUAH Kelab (contoh: Kelab Robotik)</span>, adakah kelab ini dianggotai oleh hanya SEORANG murid atau BANYAK murid?`,
-        p2_opt_1_desc: "Hanya Seorang Murid",
-        p2_opt_N_desc: "Ramai Murid",
-        p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Tepat sekali! Kelab mesti dianggotai ramai (BANYAK) murid. Kita letak token N di sebelah KELAB.",
-        p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Kelab robotik tidak mungkin hanya ada seorang sahaja murid di dalamnya.",
-        
-        sintesis_desc: "Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti MURID dan Token <strong>N (Banyak)</strong> pada sisi Entiti KELAB.",
-        sintesis_question: `Apakah Kardinaliti Akhir yang terhasil daripada peraturan: <em class="text-emerald-400">"Ambil nilai paling maksimum daripada kedua-dua belah pihak"</em>?`
+        ms: {
+          leftEntity: "MURID",
+          rightEntity: "KELAB",
+          relation: "MENYERTAI",
+          p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Murid (contohnya: Ali)</span>, adakah Ali boleh menyertai hanya SATU kelab atau BANYAK kelab?`,
+          p1_opt_1_desc: "Satu Kelab Sahaja",
+          p1_opt_M_desc: "Beberapa Kelab",
+          p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Bijak! Ali boleh menyertai beberapa (BANYAK) kelab. Kita letak token M di sebelah MURID.",
+          p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba lagi. Mengikut situasi, murid 'boleh menyertai beberapa kelab' sukan.",
+          
+          p2_question: `Jika anda mengambil <span class="text-yellow-400 font-bold underline">SEBUAH Kelab (contoh: Kelab Robotik)</span>, adakah kelab ini dianggotai oleh hanya SEORANG murid atau BANYAK murid?`,
+          p2_opt_1_desc: "Hanya Seorang Murid",
+          p2_opt_N_desc: "Ramai Murid",
+          p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Tepat sekali! Kelab mesti dianggotai ramai (BANYAK) murid. Kita letak token N di sebelah KELAB.",
+          p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Kelab robotik tidak mungkin hanya ada seorang sahaja murid di dalamnya.",
+          
+          sintesis_desc: "Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti MURID dan Token <strong>N (Banyak)</strong> pada sisi Entiti KELAB.",
+          sintesis_question: `Apakah Kardinaliti Akhir yang terhasil daripada peraturan: <em class="text-emerald-400">"Ambil nilai paling maksimum daripada kedua-dua belah pihak"</em>?`
+        },
+        en: {
+          leftEntity: "STUDENT",
+          rightEntity: "CLUB",
+          relation: "JOINS",
+          p1_question: `If you take <span class="text-pink-400 font-bold underline">ONE Student (e.g., Ali)</span>, can Ali join only ONE club or MANY clubs?`,
+          p1_opt_1_desc: "One Club Only",
+          p1_opt_M_desc: "Multiple Clubs",
+          p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Great! Ali can join multiple (MANY) clubs. We place token M beside STUDENT.",
+          p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Try again. According to the scenario, students 'can join several sports clubs'.",
+          
+          p2_question: `If you take <span class="text-yellow-400 font-bold underline">ONE Club (e.g., Robotics Club)</span>, is this club joined by only ONE student or MANY students?`,
+          p2_opt_1_desc: "One Student Only",
+          p2_opt_N_desc: "Many Students",
+          p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Spot on! A club is joined by many (MANY) students. We place token N beside CLUB.",
+          p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Incorrect. A robotics club cannot consist of only one student.",
+          
+          sintesis_desc: "Now inspect your tabletop layout. We have Token <strong>M (Many)</strong> on the STUDENT side and Token <strong>N (Many)</strong> on the CLUB side.",
+          sintesis_question: `What is the Final Cardinality based on the rule: <em class="text-emerald-400">"Take the maximum value from both sides"</em>?`
+        }
       },
       sewa: {
-        leftEntity: "PELANGGAN",
-        rightEntity: "KERETA",
-        relation: "MENYEWA",
-        p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Pelanggan</span>, adakah pelanggan tersebut boleh menyewa hanya SATU kereta atau BANYAK kereta (pada tarikh berbeza)?`,
-        p1_opt_1_desc: "Satu Kereta Sahaja",
-        p1_opt_M_desc: "Banyak Kereta",
-        p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Hebat! Pelanggan boleh menyewa beberapa buah kereta sepanjang tempoh langganannya. Kita letak token M di sebelah PELANGGAN.",
-        p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba semula. Pelanggan dibenarkan menyewa kereta berasingan pada hari yang berbeza.",
-        
-        p2_question: `Jika anda mengambil <span class="text-yellow-400 font-bold underline">SEBUAH Kereta</span>, adakah kereta ini hanya boleh disewa oleh SEORANG pelanggan sahaja sepanjang tempoh hayat kereta itu?`,
-        p2_opt_1_desc: "Hanya Seorang Pelanggan",
-        p2_opt_N_desc: "Ramai Pelanggan",
-        p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Tepat! Kereta tersebut boleh disewa secara bergilir-gilir oleh ramai pelanggan yang berbeza. Kita letak token N di sebelah KERETA.",
-        p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Jika kereta sewa dihadkan kepada seorang sahaja selamanya, syarikat tidak akan mendapat keuntungan optimum.",
-        
-        sintesis_desc: "Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti PELANGGAN dan Token <strong>N (Banyak)</strong> pada sisi Entiti KERETA.",
-        sintesis_question: `Apakah Kardinaliti Akhir bagi hubungan antara PELANGGAN dan KERETA dalam sistem sewaan kereta?`
+        ms: {
+          leftEntity: "PELANGGAN",
+          rightEntity: "KERETA",
+          relation: "MENYEWA",
+          p1_question: `Jika anda mengambil <span class="text-pink-400 font-bold underline">SEORANG Pelanggan</span>, adakah pelanggan tersebut boleh menyewa hanya SATU kereta atau BANYAK kereta (pada tarikh berbeza)?`,
+          p1_opt_1_desc: "Satu Kereta Sahaja",
+          p1_opt_M_desc: "Banyak Kereta",
+          p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Hebat! Pelanggan boleh menyewa beberapa buah kereta sepanjang tempoh langganannya. Kita letak token M di sebelah PELANGGAN.",
+          p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Cuba semula. Pelanggan dibenarkan menyewa kereta berasingan pada hari yang berbeza.",
+          
+          p2_question: `Jika anda mengambil <span class="text-yellow-400 font-bold underline">SEBUAH Kereta</span>, adakah kereta ini hanya boleh disewa oleh SEORANG pelanggan sahaja sepanjang tempoh hayat kereta itu?`,
+          p2_opt_1_desc: "Hanya Seorang Pelanggan",
+          p2_opt_N_desc: "Ramai Pelanggan",
+          p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Tepat! Kereta tersebut boleh disewa secara bergilir-gilir oleh ramai pelanggan yang berbeza. Kita letak token N di sebelah KERETA.",
+          p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Salah. Jika kereta sewa dihadkan kepada seorang sahaja selamanya, syarikat tidak akan mendapat keuntungan optimum.",
+          
+          sintesis_desc: "Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti PELANGGAN dan Token <strong>N (Banyak)</strong> pada sisi Entiti KERETA.",
+          sintesis_question: `Apakah Kardinaliti Akhir bagi hubungan antara PELANGGAN dan KERETA dalam sistem sewaan kereta?`
+        },
+        en: {
+          leftEntity: "CUSTOMER",
+          rightEntity: "CAR",
+          relation: "RENTS",
+          p1_question: `If you take <span class="text-pink-400 font-bold underline">ONE Customer</span>, can that customer rent only ONE car or MANY cars (on different dates)?`,
+          p1_opt_1_desc: "One Car Only",
+          p1_opt_M_desc: "Multiple Cars",
+          p1_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Awesome! A customer can rent multiple cars over time. We place token M beside CUSTOMER.",
+          p1_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Try again. Customers are permitted to rent different cars on separate days.",
+          
+          p2_question: `If you take <span class="text-yellow-400 font-bold underline">ONE Car</span>, can this car only be rented by ONE customer throughout its lifetime?`,
+          p2_opt_1_desc: "One Customer Only",
+          p2_opt_N_desc: "Many Customers",
+          p2_correct_feedback: "<i class='fa-solid fa-circle-check'></i> Correct! The car can be rented by many different customers over time. We place token N beside CAR.",
+          p2_wrong_feedback: "<i class='fa-solid fa-circle-xmark'></i> Incorrect. If a rental car is restricted to just one customer forever, the company would lose money.",
+          
+          sintesis_desc: "Now view your setup. We have Token <strong>M (Many)</strong> on the CUSTOMER side and Token <strong>N (Many)</strong> on the CAR side.",
+          sintesis_question: `What is the Final Cardinality between CUSTOMER and CAR in the rental database system?`
+        }
       }
     };
 
@@ -703,6 +1012,7 @@
     const feedbackMessage = document.getElementById('feedback-message');
     const btnBack = document.getElementById('btn-back');
     const btnNext = document.getElementById('btn-next');
+    const btnNextTxt = document.getElementById('btn-next-txt');
 
     // Tab buttons
     const tabKoku = document.getElementById('tab-koku');
@@ -712,23 +1022,22 @@
       if (sc === currentScenario) return;
       playBeep('click');
       currentScenario = sc;
-      
-      // Update Tab UI
+      const dict = langData[currentLang];
+
       if (currentScenario === 'koku') {
         tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
         tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
         document.getElementById('situasi-koku-desc').classList.remove('hidden');
         document.getElementById('situasi-sewa-desc').classList.add('hidden');
-        document.getElementById('situasi-badge').innerText = "M:N Kes";
+        document.getElementById('situasi-badge').innerText = dict.sitBadgeKoku;
       } else {
         tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
         tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-slate-800 text-slate-400 hover:bg-slate-700";
         document.getElementById('situasi-koku-desc').classList.add('hidden');
         document.getElementById('situasi-sewa-desc').classList.remove('hidden');
-        document.getElementById('situasi-badge').innerText = "Situasi Sewa";
+        document.getElementById('situasi-badge').innerText = dict.sitBadgeSewa;
       }
 
-      // Reset step state for new scenario
       currentStep = 1;
       maxReachedStep = 1;
       stepStates = { 1: true, 2: false, 3: false, 4: false };
@@ -736,25 +1045,24 @@
       updateUI();
     }
 
-    // Step configuration details
     const stepDetails = {
       1: {
-        title: "Langkah 1: Menyusun Kad BBM Fizikal",
+        getTitle: () => currentLang === 'ms' ? "Langkah 1: Menyusun Kad BBM Fizikal" : "Step 1: Arrange Physical BBM Cards",
         getDesc: () => {
-          const sc = scenarios[currentScenario];
-          return `Sediakan tapak kerja anda dengan meletakkan <strong>Kad Entiti ${sc.leftEntity}</strong> (Merah Jambu) di sebelah kiri dan <strong>Kad Entiti ${sc.rightEntity}</strong> di sebelah kanan. Letakkan <strong>Tali Hubungan ${sc.relation}</strong> (Berlian Kuning) di bahagian tengah sebagai penghubung.`;
+          const sc = scenarios[currentScenario][currentLang];
+          return currentLang === 'ms'
+            ? `Sediakan tapak kerja anda dengan meletakkan <strong>Kad Entiti ${sc.leftEntity}</strong> (Merah Jambu) di sebelah kiri dan <strong>Kad Entiti ${sc.rightEntity}</strong> di sebelah kanan. Letakkan <strong>Tali Hubungan ${sc.relation}</strong> (Berlian Kuning) di bahagian tengah sebagai penghubung.`
+            : `Set up your workspace by placing the <strong>${sc.leftEntity} Entity Card</strong> (Pink) on the left and the <strong>${sc.rightEntity} Entity Card</strong> on the right. Place the <strong>${sc.relation} Link Card</strong> (Yellow Diamond) in the center as a connector.`;
         },
         setup: () => {
           interactivePanel.classList.add('hidden');
           flowArrows.classList.add('opacity-0');
           yellowLine.style.width = "0%";
           
-          // Reset cards to default
           cardLeft.className = "w-full h-24 rounded-xl bg-pink-600/95 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-lg border-2 border-pink-400 transition-all duration-300 select-none";
           cardRight.className = "w-full h-24 rounded-xl bg-pink-600/95 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-lg border-2 border-pink-400 transition-all duration-300 select-none";
           cardMiddle.className = "relative w-28 h-28 rotate-45 bg-yellow-500 text-slate-950 flex items-center justify-center shadow-lg border-2 border-yellow-300 transition-all duration-300 select-none cursor-pointer hover:scale-105 z-10 rounded-lg";
           
-          // Reset Heart animation speed
           const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
           if (heartIcon) {
             heartIcon.className = "heartbeat-slow text-rose-600 mb-1 filter drop-shadow-[0_2px_4px_rgba(225,29,72,0.5)]";
@@ -767,28 +1075,27 @@
         }
       },
       2: {
-        title: "Langkah 2: PUMP 1 - Imbasan Hadapan (Kiri ke Kanan)",
+        getTitle: () => currentLang === 'ms' ? "Langkah 2: PUMP 1 - Imbasan Hadapan (Kiri ke Kanan)" : "Step 2: PUMP 1 - Forward Scan (Left to Right)",
         getDesc: () => {
-          const sc = scenarios[currentScenario];
-          return `Lakukan imbasan pertama dari <strong>Kiri ke Kanan</strong>. Gunakan formula ayat Cardio-DB wajib: <em>"Jika saya ambil SEORANG [Entiti Kiri], berapakah nilai maksimum [Entiti Kanan] yang boleh dikaitkan dengannya?"</em>`;
+          return currentLang === 'ms'
+            ? `Lakukan imbasan pertama dari <strong>Kiri ke Kanan</strong>. Gunakan formula ayat Cardio-DB wajib: <em>"Jika saya ambil SEORANG [Entiti Kiri], berapakah nilai maksimum [Entiti Kanan] yang boleh dikaitkan dengannya?"</em>`
+            : `Perform the first scan from <strong>Left to Right</strong>. Use the essential Cardio-DB sentence formula: <em>"If I take ONE [Left Entity], what is the maximum value of [Right Entity] that can be associated with it?"</em>`;
         },
         setup: () => {
-          const sc = scenarios[currentScenario];
+          const sc = scenarios[currentScenario][currentLang];
           flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20 flex items-center gap-1">
-            IMBASAN HADAPAN (PUMP 1) <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            ${currentLang === 'ms' ? 'IMBASAN HADAPAN (PUMP 1)' : 'FORWARD SCAN (PUMP 1)'} <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </span>`;
           flowArrows.classList.remove('opacity-0');
           interactivePanel.classList.remove('hidden');
           feedbackMessage.innerText = "";
           
-          // Visual cues
           cardLeft.classList.add('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardRight.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardMiddle.classList.add('pulse-glow-yellow');
           yellowLine.style.width = "50%";
           playBeep('heartbeat');
 
-          // Speed up heart animation to show active "pumping"
           const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
           if (heartIcon) {
             heartIcon.className = "heartbeat-fast text-rose-600 mb-1 filter drop-shadow-[0_2px_10px_rgba(244,63,94,0.8)]";
@@ -802,13 +1109,12 @@
               <span>${sc.p1_opt_1_desc}</span>
             </button>
             <button onclick="selectOptionStep2('M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-pink-400">Banyak (M)</span>
+              <span class="font-bold text-lg text-pink-400">${currentLang === 'ms' ? 'Banyak (M)' : 'Many (M)'}</span>
               <span>${sc.p1_opt_M_desc}</span>
             </button>
           `;
 
           if (stepStates[2]) {
-            // Already solved: Place M on left
             tokenLeft.innerText = "M";
             tokenLeft.className = "w-14 h-14 rounded-lg bg-pink-500 text-slate-950 flex items-center justify-center font-black text-2xl shadow-lg transition-all";
           } else {
@@ -820,27 +1126,27 @@
         }
       },
       3: {
-        title: "Langkah 3: PUMP 2 - Imbasan Belakang (Kanan ke Kiri)",
+        getTitle: () => currentLang === 'ms' ? "Langkah 3: PUMP 2 - Imbasan Belakang (Kanan ke Kiri)" : "Step 3: PUMP 2 - Backward Scan (Right to Left)",
         getDesc: () => {
-          return `Kunci mengelakkan miskonsepsi tegar! Pusingkan kedudukan fizikal murid ke kanan. Lakukan imbasan kembali: <em>"Jika saya ambil SEBUAH [Entiti Kanan], berapakah nilai maksimum [Entiti Kiri] yang boleh dikaitkan?"</em>`;
+          return currentLang === 'ms'
+            ? `Kunci mengelakkan miskonsepsi tegar! Pusingkan kedudukan fizikal murid ke kanan. Lakukan imbasan kembali: <em>"Jika saya ambil SEBUAH [Entiti Kanan], berapakah nilai maksimum [Entiti Kiri] yang boleh dikaitkan?"</em>`
+            : `The key to stopping misconceptions! Turn physically to face the right side. Scan backward: <em>"If I take ONE [Right Entity], what is the maximum value of [Left Entity] that can be associated?"</em>`;
         },
         setup: () => {
-          const sc = scenarios[currentScenario];
+          const sc = scenarios[currentScenario][currentLang];
           flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 flex items-center gap-1">
-            <i class="fa-solid fa-arrow-left text-[10px]"></i> IMBASAN BELAKANG (PUMP 2)
+            <i class="fa-solid fa-arrow-left text-[10px]"></i> ${currentLang === 'ms' ? 'IMBASAN BELAKANG (PUMP 2)' : 'BACKWARD SCAN (PUMP 2)'}
           </span>`;
           flowArrows.classList.remove('opacity-0');
           interactivePanel.classList.remove('hidden');
           feedbackMessage.innerText = "";
 
-          // Visual cues
           cardLeft.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardRight.classList.add('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardMiddle.classList.add('pulse-glow-yellow');
           yellowLine.style.width = "100%";
           playBeep('heartbeat');
 
-          // Keep heart pumping actively
           const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
           if (heartIcon) {
             heartIcon.className = "heartbeat-fast text-rose-600 mb-1 filter drop-shadow-[0_2px_10px_rgba(244,63,94,0.8)]";
@@ -854,13 +1160,12 @@
               <span>${sc.p2_opt_1_desc}</span>
             </button>
             <button onclick="selectOptionStep3('N')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-yellow-400">Banyak (N)</span>
+              <span class="font-bold text-lg text-yellow-400">${currentLang === 'ms' ? 'Banyak (N)' : 'Many (N)'}</span>
               <span>${sc.p2_opt_N_desc}</span>
             </button>
           `;
 
           if (stepStates[3]) {
-            // Already solved: Place N on right
             tokenRight.innerText = "N";
             tokenRight.className = "w-14 h-14 rounded-lg bg-yellow-500 text-slate-950 flex items-center justify-center font-black text-2xl shadow-lg transition-all";
           } else {
@@ -872,28 +1177,28 @@
         }
       },
       4: {
-        title: "Langkah 4: Sintesis Akhir Kardinaliti Muktamad (M:N)",
+        getTitle: () => currentLang === 'ms' ? "Langkah 4: Sintesis Akhir Kardinaliti Muktamad (M:N)" : "Step 4: Final Synthesis of Cardinality (M:N)",
         getDesc: () => {
-          const sc = scenarios[currentScenario];
-          return `Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti ${sc.leftEntity} dan Token <strong>N (Banyak)</strong> pada sisi Entiti ${sc.rightEntity}.`;
+          const sc = scenarios[currentScenario][currentLang];
+          return currentLang === 'ms'
+            ? `Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti ${sc.leftEntity} dan Token <strong>N (Banyak)</strong> pada sisi Entiti ${sc.rightEntity}.`
+            : `Now observe the entire tabletop layout. We have Token <strong>M (Many)</strong> on the ${sc.leftEntity} side and Token <strong>N (Many)</strong> on the ${sc.rightEntity} side.`;
         },
         setup: () => {
-          const sc = scenarios[currentScenario];
+          const sc = scenarios[currentScenario][currentLang];
           flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
-            <i class="fa-solid fa-check-double text-[10px]"></i> SINTESIS KARDINALITI MUKTAMAD (M:N)
+            <i class="fa-solid fa-check-double text-[10px]"></i> ${currentLang === 'ms' ? 'SINTESIS KARDINALITI MUKTAMAD (M:N)' : 'FINAL CARDINALITY SYNTHESIS (M:N)'}
           </span>`;
           flowArrows.classList.remove('opacity-0');
           interactivePanel.classList.remove('hidden');
           feedbackMessage.innerText = "";
 
-          // Visual cues for final state (Left: M, Right: N)
           cardLeft.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardRight.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
           cardMiddle.classList.remove('pulse-glow-yellow');
           yellowLine.style.width = "100%";
           playBeep('success');
 
-          // Return heart to normal rhythmic pulse
           const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
           if (heartIcon) {
             heartIcon.className = "heartbeat-slow text-emerald-500 mb-1 filter drop-shadow-[0_2px_10px_rgba(16,185,129,0.6)]";
@@ -910,11 +1215,11 @@
           optionsContainer.innerHTML = `
             <button onclick="selectOptionStep4('1:M')" class="p-3 rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-base text-slate-400">1:M</span>
-              <span>Satu-ke-Banyak (Miskonsepsi!)</span>
+              <span>${currentLang === 'ms' ? 'Satu-ke-Banyak (Miskonsepsi!)' : 'One-to-Many (Misconception!)'}</span>
             </button>
             <button onclick="selectOptionStep4('M:N')" class="p-3 rounded-lg border border-slate-800 bg-emerald-950/20 hover:bg-emerald-900/30 text-xs md:text-sm text-slate-300 transition flex flex-col items-center gap-1">
               <span class="font-bold text-base text-emerald-400">M:N</span>
-              <span>Banyak-ke-Banyak (M:N)</span>
+              <span>${currentLang === 'ms' ? 'Banyak-ke-Banyak (M:N)' : 'Many-to-Many (M:N)'}</span>
             </button>
           `;
         }
@@ -922,9 +1227,7 @@
     };
 
     function goToStep(step) {
-      if (step > maxReachedStep) {
-        return;
-      }
+      if (step > maxReachedStep) return;
       playBeep('click');
       currentStep = step;
       updateUI();
@@ -935,7 +1238,9 @@
       if (targetStep >= 1 && targetStep <= 4) {
         if (dir === 1 && !stepStates[currentStep]) {
           feedbackMessage.className = "text-xs md:text-sm text-center font-semibold text-rose-400 animate-pulse mt-2";
-          feedbackMessage.innerText = "Sila selesaikan cabaran soalan interaktif terlebih dahulu!";
+          feedbackMessage.innerText = currentLang === 'ms' 
+            ? "Sila selesaikan cabaran soalan interaktif terlebih dahulu!" 
+            : "Please solve the interactive question first!";
           playBeep('fail');
           return;
         }
@@ -949,14 +1254,12 @@
     }
 
     function updateUI() {
-      const activeSc = scenarios[currentScenario];
+      const activeSc = scenarios[currentScenario][currentLang];
 
-      // Update card names
       entityLeftName.innerText = activeSc.leftEntity;
       entityRightName.innerText = activeSc.rightEntity;
       relationMiddleName.innerText = activeSc.relation;
 
-      // Highlight/Un-highlight step buttons
       for (let i = 1; i <= 4; i++) {
         const btn = document.getElementById(`btn-step-${i}`);
         if (i === currentStep) {
@@ -968,28 +1271,26 @@
         }
       }
 
-      // Update instructions dynamically
-      stepInstTitle.innerHTML = stepDetails[currentStep].title;
+      stepInstTitle.innerHTML = stepDetails[currentStep].getTitle();
       stepInstDesc.innerHTML = stepDetails[currentStep].getDesc();
 
-      // Run specific step setup
       stepDetails[currentStep].setup();
 
-      // Enable/Disable Back Button
       btnBack.disabled = (currentStep === 1);
 
-      // Manage Seterusnya button text and color
       if (currentStep === 4 && stepStates[4]) {
-        btnNext.innerHTML = `Selesai Intervensi <i class="fa-solid fa-circle-check ml-1 text-emerald-400"></i>`;
+        btnNextTxt.innerText = currentLang === 'ms' ? "Selesai Intervensi" : "Intervention Completed";
+        btnNext.innerHTML = `<span id="btn-next-txt">${btnNextTxt.innerText}</span> <i class="fa-solid fa-circle-check ml-1 text-emerald-400"></i>`;
         btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5";
       } else {
-        btnNext.innerHTML = `Seterusnya <i class="fa-solid fa-chevron-right ml-1"></i>`;
+        btnNextTxt.innerText = currentLang === 'ms' ? "Seterusnya" : "Next";
+        btnNext.innerHTML = `<span id="btn-next-txt">${btnNextTxt.innerText}</span> <i class="fa-solid fa-chevron-right ml-1"></i>`;
         btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg shadow-pink-500/20 transition flex items-center gap-1.5";
       }
     }
 
     function selectOptionStep2(opt) {
-      const activeSc = scenarios[currentScenario];
+      const activeSc = scenarios[currentScenario][currentLang];
       if (opt === 'M') {
         stepStates[2] = true;
         tokenLeft.innerText = "M";
@@ -1007,7 +1308,7 @@
     }
 
     function selectOptionStep3(opt) {
-      const activeSc = scenarios[currentScenario];
+      const activeSc = scenarios[currentScenario][currentLang];
       if (opt === 'N') {
         stepStates[3] = true;
         tokenRight.innerText = "N";
@@ -1028,22 +1329,28 @@
       if (opt === 'M:N') {
         stepStates[4] = true;
         feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-400 mt-2 bg-emerald-950/40 p-3 rounded-xl border border-emerald-500/20";
-        feedbackMessage.innerHTML = `
+        feedbackMessage.innerHTML = currentLang === 'ms' ? `
           <div class='flex flex-col gap-1 items-center'>
             <span class='text-sm md:text-base'><i class='fa-solid fa-trophy text-yellow-400'></i> Syabas! Anda Selesai Intervensi!</span>
             <span class='font-normal text-slate-300 text-xs md:text-sm'>Kardinaliti muktamad bagi hubungan ini ialah Banyak-ke-Banyak (M:N) dari kiri ke kanan. Anda berjaya memecahkan ralat miskonsepsi!</span>
+          </div>
+        ` : `
+          <div class='flex flex-col gap-1 items-center'>
+            <span class='text-sm md:text-base'><i class='fa-solid fa-trophy text-yellow-400'></i> Congratulations! Intervention Completed!</span>
+            <span class='font-normal text-slate-300 text-xs md:text-sm'>The final cardinality of this relationship is Many-to-Many (M:N) from left to right. You successfully overcame the misconception!</span>
           </div>
         `;
         playBeep('success');
         updateUI();
       } else {
         feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-400 mt-2";
-        feedbackMessage.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Miskonsepsi dikesan! Ingat peraturan Cardio-DB: ambil nilai paling maksimum daripada KEDUA-DUA imbasan (M dan N).";
+        feedbackMessage.innerHTML = currentLang === 'ms' 
+          ? "<i class='fa-solid fa-triangle-exclamation'></i> Miskonsepsi dikesan! Ingat peraturan Cardio-DB: ambil nilai paling maksimum daripada KEDUA-DUA imbasan (M dan N)."
+          : "<i class='fa-solid fa-triangle-exclamation'></i> Misconception detected! Remember the Cardio-DB rule: take the maximum value from BOTH scans (M and N).";
         playBeep('fail');
       }
     }
 
-    // Initialize Page
     window.onload = function() {
       updateUI();
     }
@@ -1055,14 +1362,12 @@
       playBeep('click');
       const htmlEl = document.documentElement;
       
-      // Reset all buttons styling
       const buttons = ['sm', 'md', 'lg', 'xl'];
       buttons.forEach(b => {
         const btn = document.getElementById(`font-${b}`);
         btn.className = "px-2 py-1 rounded text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700 transition";
       });
 
-      // Update active button & root font size
       const activeBtn = document.getElementById(`font-${size}`);
       activeBtn.className = "px-2 py-1 rounded text-xs font-semibold bg-pink-500 text-white shadow shadow-pink-500/20 transition";
 
@@ -1071,7 +1376,7 @@
           htmlEl.style.fontSize = "14px";
           break;
         case 'md':
-          htmlEl.style.fontSize = "16px"; // Default
+          htmlEl.style.fontSize = "16px";
           break;
         case 'lg':
           htmlEl.style.fontSize = "19px";
@@ -1089,7 +1394,7 @@
     let questionsAnswered = { 1: false, 2: false, 3: false, 4: false, 5: false };
 
     function checkQuiz(qNum, ans, element) {
-      if (questionsAnswered[qNum]) return; // Prevent answering again
+      if (questionsAnswered[qNum]) return;
 
       const feedback = document.querySelector(`.quiz-feedback-${qNum}`);
       const options = document.querySelectorAll(`.q-opt-${qNum}`);
@@ -1097,7 +1402,6 @@
       questionsAnswered[qNum] = true;
       feedback.classList.remove('hidden');
 
-      // Reset style of other options
       options.forEach(opt => {
         opt.disabled = true;
         opt.classList.add('opacity-50');
@@ -1110,11 +1414,15 @@
       if (qNum === 1) {
         if (ans === '1:1') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Betul (Tahap Rendah Kuasai!)</span> Menggunakan imbasan Cardio-DB: SEORANG murid hanya ada SATU kad matrik (PUMP 1: 1). SEBUAH kad matrik hanya dimiliki oleh SEORANG murid (PUMP 2: 1). Maka, hubungannya ialah <strong>Satu-ke-Satu (1:1)</strong>.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Betul (Tahap Rendah Kuasai!)</span> Menggunakan imbasan Cardio-DB: SEORANG murid hanya ada SATU kad matrik (PUMP 1: 1). SEBUAH kad matrik hanya dimiliki oleh SEORANG murid (PUMP 2: 1). Maka, hubungannya ialah <strong>Satu-ke-Satu (1:1)</strong>.`
+            : `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Correct (Basic Level Mastered!)</span> Cardio-DB scan: ONE student holds ONE matrix card (PUMP 1: 1). ONE matrix card belongs to ONE student (PUMP 2: 1). Relationship: <strong>One-to-One (1:1)</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Cuba teliti semula: Adakah munasabah jika sebuah kad matrik boleh dikongsi oleh ramai murid? Sudah tentu tidak. Hubungan yang betul ialah <strong>1:1</strong>.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Cuba teliti semula: Adakah munasabah jika sebuah kad matrik boleh dikongsi oleh ramai murid? Hubungan yang betul ialah <strong>1:1</strong>.`
+            : `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Incorrect.</span> Can a single student ID matrix card be shared by many students? No. The correct relationship is <strong>1:1</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
@@ -1123,11 +1431,15 @@
       else if (qNum === 2) {
         if (ans === '1:M') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Hebat (Tahap Sederhana Kuasai!)</span> Mari kita mengepam Cardio-DB: <br><strong>PUMP 1 (Hadapan):</strong> Jika kita ambil SEORANG Pesakit, dia boleh ditempatkan dalam maksimum <strong>SATU (1)</strong> wad sahaja pada satu masa.<br><strong>PUMP 2 (Belakang):</strong> Jika kita ambil SEBUAH Wad, ia boleh menampung <strong>BANYAK (M)</strong> pesakit.<br>Sintesis: Kiri ke kanan mendapat 'M' pada sisi pesakit. Kanan ke kiri mendapat '1' pada sisi wad. Maka, hubungannya ialah <strong>Satu-ke-Banyak (1:M)</strong>.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Hebat (Tahap Sederhana Kuasai!)</span> PUMP 1: Patient -> 1 Ward. PUMP 2: 1 Ward -> MANY Patients. Hubungan: <strong>Satu-ke-Banyak (1:M)</strong>.`
+            : `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Great (Medium Level Mastered!)</span> PUMP 1: Patient -> 1 Ward. PUMP 2: 1 Ward -> MANY Patients. Relationship: <strong>One-to-Many (1:M)</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> Ingat! PUMP 1: Pesakit hanya boleh baring di SATU wad sahaja (1). PUMP 2: Wad boleh diisi oleh BANYAK pesakit (M). Jadi hubungannya ialah <strong>1:M</strong>.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah.</span> PUMP 1: Pesakit hanya baring di 1 wad (1). PUMP 2: Wad diisi BANYAK pesakit (M). Hubungan: <strong>1:M</strong>.`
+            : `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Incorrect.</span> PUMP 1: Patient is in 1 ward (1). PUMP 2: Ward holds MANY patients (M). Relationship: <strong>1:M</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
@@ -1136,11 +1448,15 @@
       else if (qNum === 3) {
         if (ans === 'M:N') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Syabas! Anda menguasai senario sewaan!</span><br><strong>PUMP 1 (Hadapan):</strong> SEORANG Pelanggan boleh menyewa <strong>BANYAK (M)</strong> kereta yang berbeza pada masa berasingan.<br><strong>PUMP 2 (Belakang):</strong> SEBUAH Kereta pula boleh disewa oleh <strong>BANYAK (N)</strong> pelanggan sepanjang tempoh operasinya.<br>Sintesis Cardio-DB menghasilkan hubungan muktamad <strong>Banyak-ke-Banyak (M:N)</strong> dari kiri ke kanan.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Syabas! Anda menguasai senario sewaan!</span> PUMP 1: 1 Pelanggan -> BANYAK Kereta (M). PUMP 2: 1 Kereta -> BANYAK Pelanggan (N). Hubungan muktamad: <strong>Banyak-ke-Banyak (M:N)</strong>.`
+            : `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Excellent! Rental scenario mastered!</span> PUMP 1: 1 Customer -> MANY Cars (M). PUMP 2: 1 Car -> MANY Customers (N). Final relationship: <strong>Many-to-Many (M:N)</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah (Perangkap Miskonsepsi!).</span> Adakah sebuah kereta sewa hanya boleh disewa oleh seorang pelanggan sahaja? Tidak. Kereta tersebut akan disewa oleh ramai pelanggan lain secara bergilir-gilir. Jadi ia mesti <strong>M:N</strong>!`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Salah (Perangkap Miskonsepsi!).</span> Kereta sewa disewa oleh ramai pelanggan secara bergilir-gilir. Ia mesti <strong>M:N</strong>!`
+            : `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Incorrect (Misconception Trap!).</span> A rental car is rented by multiple customers over time. It must be <strong>M:N</strong>!`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
@@ -1149,11 +1465,15 @@
       else if (qNum === 4) {
         if (ans === 'M:N') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Cemerlang! (M:N Diperoleh)</span> Anda berjaya berfikir secara kritis!<br><strong>PUMP 1:</strong> SEORANG pekerja boleh menyertai <strong>BANYAK (M)</strong> projek.<br><strong>PUMP 2:</strong> SEBUAH projek boleh dikendalikan oleh <strong>BANYAK (N)</strong> pekerja.<br>Hasil maksimum kedua-dua belah pihak ialah <strong>Banyak-ke-Banyak (M:N)</strong> dari kiri ke kanan. Syabas kerana tidak terjebak dengan miskonsepsi 1:M!`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Cemerlang! (M:N Diperoleh)</span> PUMP 1: 1 Pekerja -> BANYAK Projek (M). PUMP 2: 1 Projek -> BANYAK Pekerja (N). Hubungan: <strong>M:N</strong>.`
+            : `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Outstanding! (M:N Mastered)</span> PUMP 1: 1 Employee -> MANY Projects (M). PUMP 2: 1 Project -> MANY Employees (N). Relationship: <strong>M:N</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang Tepat.</span> Anda mungkin hanya melakukan PUMP 1 sahaja. Jika ditiup PUMP 2, sebuah projek korporat sudah pasti mengandungi ramai pekerja (Banyak) demi melengkapkan tugas. Maka hubungan muktamad ialah <strong>M:N</strong>.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang Tepat.</span> Sebuah projek dikendalikan oleh ramai pekerja. Maka hubungan muktamad ialah <strong>M:N</strong>.`
+            : `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Incorrect.</span> A project involves multiple employees. The final relationship is <strong>M:N</strong>.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }
@@ -1162,11 +1482,15 @@
       else if (qNum === 5) {
         if (ans === 'A') {
           isCorrect = true;
-          feedback.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Tepat!</span> Imbasan satu hala (PUMP 1 sahaja) merupakan punca utama kegagalan murid Tingkatan 5 menjawab soalan pangkalan data SPM dengan betul. Syabas atas refleksi anda!`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Tepat!</span> Imbasan satu hala (PUMP 1 sahaja) punca utama terlepas pandang kekangan arah bertentangan.`
+            : `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Spot on!</span> Scanning one direction only (PUMP 1) leads to overlooking constraints from the opposite direction.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
         } else {
-          feedback.innerHTML = `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang tepat.</span> PUMP 2 adalah proses semakan songsang bagi menentukan hakikat sebenar data maksimum dari sudut bertentangan demi mengelakkan perangkap ralat 1:M.`;
+          feedback.innerHTML = currentLang === 'ms'
+            ? `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Kurang tepat.</span> PUMP 2 ialah proses semakan songsang menentukan hakikat sebenar data maksimum.`
+            : `<span class="text-rose-400 font-bold"><i class="fa-solid fa-circle-xmark"></i> Incorrect.</span> PUMP 2 is a crucial reverse-check to determine the true maximum data bounds.`;
           element.className = "p-3 text-xs md:text-sm text-left rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 flex items-center justify-between";
           element.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-400";
         }

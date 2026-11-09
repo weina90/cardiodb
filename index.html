@@ -1588,355 +1588,106 @@
     }
   </script>
 
-  <!-- Realtime Storage & Modal Script -->
+  <!-- Feedback Modal & Realtime Storage Script -->
   <script>
-    function changeLanguage(lang) {
+    let currentRating = 5;
+    const STORAGE_KEY = 'cardio_db_feedbacks_v1';
+
+    function openFeedbackModal() {
       playBeep('click');
-      currentLang = lang;
-
-      document.getElementById('lang-ms').className = lang === 'ms' 
-        ? "px-2.5 py-1 rounded text-xs font-bold bg-pink-500 text-white shadow shadow-pink-500/20 transition"
-        : "px-2.5 py-1 rounded text-xs font-bold bg-white text-slate-600 hover:bg-blue-100 transition border border-blue-200";
-      
-      document.getElementById('lang-en').className = lang === 'en' 
-        ? "px-2.5 py-1 rounded text-xs font-bold bg-pink-500 text-white shadow shadow-pink-500/20 transition"
-        : "px-2.5 py-1 rounded text-xs font-bold bg-white text-slate-600 hover:bg-blue-100 transition border border-blue-200";
-
-      const dict = langData[lang];
-      // ... existing language assignments ...
-      updateUI();
+      const modal = document.getElementById('feedback-modal');
+      if (modal) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+        renderFeed();
+      }
     }
-  </script>
 
-  <!-- Font Size Handler -->
-  <script>
-    function changeFontSize(size) {
+    function closeFeedbackModal() {
       playBeep('click');
-      const root = document.documentElement;
-      
-      const sizes = ['sm', 'md', 'lg', 'xl'];
-      sizes.forEach(s => {
-        const btn = document.getElementById(`font-${s}`);
-        if (btn) {
-          btn.className = (s === size)
-            ? "px-2 py-1 rounded text-xs font-semibold bg-pink-500 text-white shadow shadow-pink-500/20 transition"
-            : "px-2 py-1 rounded text-xs font-semibold bg-white text-slate-600 hover:bg-blue-100 transition border border-blue-200";
+      const modal = document.getElementById('feedback-modal');
+      if (modal) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    }
+
+    function setRating(rating) {
+      playBeep('click');
+      currentRating = rating;
+      const container = document.getElementById('star-rating-container');
+      if (container) {
+        const buttons = container.querySelectorAll('.star-btn');
+        buttons.forEach((btn, idx) => {
+          const starIcon = btn.querySelector('i');
+          if (starIcon) {
+            if (idx < rating) {
+              starIcon.className = "fa-solid fa-star text-amber-400";
+            } else {
+              starIcon.className = "fa-regular fa-star text-slate-300";
+            }
+          }
+        });
+      }
+      const label = document.getElementById('star-count-label');
+      if (label) label.innerText = `${rating}/5`;
+    }
+
+    function getFeedbacks() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.log("Penyimpanan tempatan tidak disokong, menggunakan memori.");
+      }
+      return [
+        {
+          id: 1,
+          name: "Cikgu Rahmah",
+          role: "Guru",
+          type: "Pujian",
+          rating: 5,
+          msg: "Teknik Cardio-DB sangat efektif! Pelajar T5 saya cepat faham perbezaan 1:M dan M:N dengan simulasi imbasan dua arah.",
+          time: "02/11/2026",
+          likes: 8
+        },
+        {
+          id: 2,
+          name: "Ahmad Hafiz (T5)",
+          role: "Murid",
+          type: "Cadangan",
+          rating: 5,
+          msg: "Terbaik! Sebelum ini selalu keliru apabila jumpa soalan KBAT sewaan. Lepas guna BBM ini baru jelas PUMP 2 wajib dibuat.",
+          time: "05/11/2026",
+          likes: 4
         }
+      ];
+    }
+
+    function saveFeedbacks(list) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      } catch (e) {
+        console.log("Gagal menyimpan ke localStorage.");
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
       });
-
-      if (size === 'sm') root.style.fontSize = '14px';
-      else if (size === 'md') root.style.fontSize = '16px';
-      else if (size === 'lg') root.style.fontSize = '18px';
-      else if (size === 'xl') root.style.fontSize = '20px';
     }
-  </script>
-
-  <!-- Simulator Logic -->
-  <script>
-    // ... existing scenarioData definitions ...
-
-    function switchScenario(sc) {
-      if (sc === currentScenario) return;
-      playBeep('click');
-      currentScenario = sc;
-      
-      const dict = langData[currentLang];
-      if (currentScenario === 'koku') {
-        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
-        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-slate-600 hover:bg-blue-100 border border-blue-200";
-        document.getElementById('situasi-koku-desc').classList.remove('hidden');
-        document.getElementById('situasi-sewa-desc').classList.add('hidden');
-        document.getElementById('situasi-badge').innerText = dict.sitBadgeKoku;
-      } else {
-        tabSewa.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-pink-500 text-white shadow shadow-pink-500/20";
-        tabKoku.className = "flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-slate-600 hover:bg-blue-100 border border-blue-200";
-        document.getElementById('situasi-koku-desc').classList.add('hidden');
-        document.getElementById('situasi-sewa-desc').classList.remove('hidden');
-        document.getElementById('situasi-badge').innerText = dict.sitBadgeSewa;
-      }
-
-      currentStep = 1;
-      maxReachedStep = 1;
-      stepStates = { 1: true, 2: false, 3: false, 4: false };
-
-      updateUI();
-    }
-
-    const stepDetails = {
-      1: {
-        getTitle: () => (currentLang === 'ms' ? "Langkah 1: Menyusun Kad BBM Fizikal" : "Step 1: Arrange Physical BBM Cards"),
-        getDesc: () => {
-          const sc = scenarioData[currentScenario][currentLang];
-          return (currentLang === 'ms') 
-            ? `Sediakan tapak kerja anda dengan meletakkan <strong>Kad Entiti ${sc.leftEntity}</strong> (Merah Jambu) di sebelah kiri dan <strong>Kad Entiti ${sc.rightEntity}</strong> di sebelah kanan. Letakkan <strong>Tali Hubungan ${sc.relation}</strong> (Berlian Biru) di bahagian tengah.`
-            : `Set up your workspace by placing the <strong>Entity Card ${sc.leftEntity}</strong> (Pink) on the left and <strong>Entity Card ${sc.rightEntity}</strong> on the right. Connect them using the <strong>Relationship Link ${sc.relation}</strong> (Blue Diamond).`;
-        },
-        setup: () => {
-          interactivePanel.classList.add('hidden');
-          flowArrows.classList.add('opacity-0');
-          yellowLine.style.width = "0%";
-          
-          cardLeft.className = "w-full h-24 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-md border-2 border-pink-300 transition-all duration-300 select-none";
-          cardRight.className = "w-full h-24 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 text-white flex flex-col items-center justify-center p-3 font-extrabold tracking-widest text-lg shadow-md border-2 border-pink-300 transition-all duration-300 select-none";
-          cardMiddle.className = "relative w-28 h-28 rotate-45 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg border-2 border-blue-300 transition-all duration-300 select-none cursor-pointer hover:scale-105 z-10 rounded-lg";
-          
-          const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
-          if (heartIcon) {
-            heartIcon.className = "heartbeat-slow text-pink-300 mb-1 filter drop-shadow-[0_2px_4px_rgba(236,72,153,0.5)]";
-          }
-
-          tokenLeft.innerText = "?";
-          tokenLeft.className = "w-14 h-14 rounded-lg bg-white border-2 border-dashed border-blue-300 flex items-center justify-center font-bold text-2xl text-blue-400 transition-all shadow-sm";
-          tokenRight.innerText = "?";
-          tokenRight.className = "w-14 h-14 rounded-lg bg-white border-2 border-dashed border-blue-300 flex items-center justify-center font-bold text-2xl text-blue-400 transition-all shadow-sm";
-        }
-      },
-      2: {
-        getTitle: () => (currentLang === 'ms' ? "Langkah 2: PUMP 1 - Imbasan Hadapan (Kiri ke Kanan)" : "Step 2: PUMP 1 - Forward Scan (Left to Right)"),
-        getDesc: () => (currentLang === 'ms' 
-          ? `Lakukan imbasan pertama dari <strong>Kiri ke Kanan</strong>. Gunakan formula ayat Cardio-DB wajib: <em>"Jika saya ambil SEORANG [Entiti Kiri], berapakah nilai maksimum [Entiti Kanan] yang boleh dikaitkan?"</em>`
-          : `Perform the first scan from <strong>Left to Right</strong>. Use the mandatory Cardio-DB sentence formula: <em>"If I take ONE [Left Entity], what is the maximum value of [Right Entity] associated?"</em>`),
-        setup: () => {
-          const sc = scenarioData[currentScenario][currentLang];
-          flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-pink-100 text-pink-700 border border-pink-300 flex items-center gap-1">
-            ${currentLang === 'ms' ? 'IMBASAN HADAPAN (PUMP 1)' : 'FORWARD SCAN (PUMP 1)'} <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </span>`;
-          flowArrows.classList.remove('opacity-0');
-          interactivePanel.classList.remove('hidden');
-          feedbackMessage.innerText = "";
-          
-          cardLeft.classList.add('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardRight.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardMiddle.classList.add('pulse-glow-blue');
-          yellowLine.style.width = "50%";
-          playBeep('heartbeat');
-
-          const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
-          if (heartIcon) {
-            heartIcon.className = "heartbeat-fast text-pink-300 mb-1 filter drop-shadow-[0_2px_10px_rgba(236,72,153,0.8)]";
-          }
-
-          questionText.innerHTML = sc.p1_q;
-          
-          optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep2('1')" class="p-3 rounded-lg border border-blue-200 bg-white hover:bg-blue-50 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-slate-500">1</span>
-              <span>${sc.p1_opt_1}</span>
-            </button>
-            <button onclick="selectOptionStep2('M')" class="p-3 rounded-lg border border-pink-200 bg-pink-50/50 hover:bg-pink-100 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-pink-600">${currentLang === 'ms' ? 'Banyak (M)' : 'Many (M)'}</span>
-              <span>${sc.p1_opt_M}</span>
-            </button>
-          `;
-
-          if (stepStates[2]) {
-            tokenLeft.innerText = "M";
-            tokenLeft.className = "w-14 h-14 rounded-lg bg-pink-500 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all";
-          } else {
-            tokenLeft.innerText = "?";
-            tokenLeft.className = "w-14 h-14 rounded-lg bg-white border-2 border-dashed border-blue-300 flex items-center justify-center font-bold text-2xl text-blue-400 transition-all shadow-sm";
-          }
-          tokenRight.innerText = "1";
-          tokenRight.className = "w-14 h-14 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-2xl text-blue-700 transition-all";
-        }
-      },
-      3: {
-        getTitle: () => (currentLang === 'ms' ? "Langkah 3: PUMP 2 - Imbasan Belakang (Kanan ke Kiri)" : "Step 3: PUMP 2 - Backward Scan (Right to Left)"),
-        getDesc: () => (currentLang === 'ms'
-          ? `Kunci mengelakkan miskonsepsi tegar! Pusingkan kedudukan anda ke kanan. Imbas kembali: <em>"Jika saya ambil SEBUAH [Entiti Kanan], berapakah nilai maksimum [Entiti Kiri] yang boleh dikaitkan?"</em>`
-          : `The key to overcoming stubborn misconceptions! Turn to the right. Scan back: <em>"If I take ONE [Right Entity], what is the maximum value of [Left Entity] associated?"</em>`),
-        setup: () => {
-          const sc = scenarioData[currentScenario][currentLang];
-          flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-700 border border-blue-300 flex items-center gap-1">
-            <i class="fa-solid fa-arrow-left text-[10px]"></i> ${currentLang === 'ms' ? 'IMBASAN BELAKANG (PUMP 2)' : 'BACKWARD SCAN (PUMP 2)'}
-          </span>`;
-          flowArrows.classList.remove('opacity-0');
-          interactivePanel.classList.remove('hidden');
-          feedbackMessage.innerText = "";
-
-          cardLeft.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardRight.classList.add('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardMiddle.classList.add('pulse-glow-blue');
-          yellowLine.style.width = "100%";
-          playBeep('heartbeat');
-
-          const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
-          if (heartIcon) {
-            heartIcon.className = "heartbeat-fast text-pink-300 mb-1 filter drop-shadow-[0_2px_10px_rgba(236,72,153,0.8)]";
-          }
-
-          questionText.innerHTML = sc.p2_q;
-          
-          optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep3('1')" class="p-3 rounded-lg border border-blue-200 bg-white hover:bg-blue-50 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-slate-500">1</span>
-              <span>${sc.p2_opt_1}</span>
-            </button>
-            <button onclick="selectOptionStep3('N')" class="p-3 rounded-lg border border-blue-200 bg-blue-50 hover:bg-blue-100 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-lg text-blue-600">${currentLang === 'ms' ? 'Banyak (N)' : 'Many (N)'}</span>
-              <span>${sc.p2_opt_N}</span>
-            </button>
-          `;
-
-          if (stepStates[3]) {
-            tokenRight.innerText = "N";
-            tokenRight.className = "w-14 h-14 rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all";
-          } else {
-            tokenRight.innerText = "?";
-            tokenRight.className = "w-14 h-14 rounded-lg bg-white border-2 border-dashed border-blue-300 flex items-center justify-center font-bold text-2xl text-blue-400 transition-all shadow-sm";
-          }
-          tokenLeft.innerText = "1";
-          tokenLeft.className = "w-14 h-14 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-2xl text-blue-700 transition-all";
-        }
-      },
-      4: {
-        getTitle: () => (currentLang === 'ms' ? "Langkah 4: Sintesis Akhir Kardinaliti Muktamad (M:N)" : "Step 4: Final Synthesis (M:N Cardinality)"),
-        getDesc: () => {
-          const sc = scenarioData[currentScenario][currentLang];
-          return (currentLang === 'ms')
-            ? `Kini lihat keseluruhan susunan kad di atas meja anda. Kita mempunyai Token <strong>M (Banyak)</strong> pada sisi Entiti ${sc.leftEntity} dan Token <strong>N (Banyak)</strong> pada sisi Entiti ${sc.rightEntity}.`
-            : `Observe the entire tabletop card arrangement. We have Token <strong>M (Many)</strong> on ${sc.leftEntity} and Token <strong>N (Many)</strong> on ${sc.rightEntity}.`;
-        },
-        setup: () => {
-          const sc = scenarioData[currentScenario][currentLang];
-          flowArrows.innerHTML = `<span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
-            <i class="fa-solid fa-check-double text-[10px]"></i> ${currentLang === 'ms' ? 'SINTESIS KARDINALITI MUKTAMAD (M:N)' : 'FINAL CARDINALITY SYNTHESIS (M:N)'}
-          </span>`;
-          flowArrows.classList.remove('opacity-0');
-          interactivePanel.classList.remove('hidden');
-          feedbackMessage.innerText = "";
-
-          cardLeft.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardRight.classList.remove('pulse-glow-pink', 'ring-2', 'ring-pink-300');
-          cardMiddle.classList.remove('pulse-glow-blue');
-          yellowLine.style.width = "100%";
-          playBeep('success');
-
-          const heartIcon = cardMiddle.querySelector('.heartbeat-slow, .heartbeat-fast');
-          if (heartIcon) {
-            heartIcon.className = "heartbeat-slow text-emerald-300 mb-1 filter drop-shadow-[0_2px_10px_rgba(16,185,129,0.6)]";
-          }
-
-          tokenLeft.innerText = "M";
-          tokenLeft.className = "w-14 h-14 rounded-lg bg-pink-500 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all";
-          
-          tokenRight.innerText = "N";
-          tokenRight.className = "w-14 h-14 rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all";
-
-          questionText.innerHTML = sc.syn_q;
-          
-          optionsContainer.innerHTML = `
-            <button onclick="selectOptionStep4('1:M')" class="p-3 rounded-lg border border-blue-200 bg-white hover:bg-blue-50 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-base text-slate-500">1:M</span>
-              <span>${currentLang === 'ms' ? 'Satu-ke-Banyak (Miskonsepsi!)' : 'One-to-Many (Misconception!)'}</span>
-            </button>
-            <button onclick="selectOptionStep4('M:N')" class="p-3 rounded-lg border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-xs text-slate-800 transition flex flex-col items-center gap-1">
-              <span class="font-bold text-base text-emerald-700">M:N</span>
-              <span>${currentLang === 'ms' ? 'Banyak-ke-Banyak (M:N)' : 'Many-to-Many (M:N)'}</span>
-            </button>
-          `;
-        }
-      }
-    };
-
-    function updateUI() {
-      const activeSc = scenarioData[currentScenario][currentLang];
-
-      entityLeftName.innerText = activeSc.leftEntity;
-      entityRightName.innerText = activeSc.rightEntity;
-      relationMiddleName.innerText = activeSc.relation;
-
-      for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById(`btn-step-${i}`);
-        if (i === currentStep) {
-          btn.className = "px-3 py-1.5 rounded-lg font-semibold transition-all bg-pink-500 text-white flex items-center gap-1.5 shadow-sm";
-        } else if (i <= maxReachedStep) {
-          btn.className = "px-3 py-1.5 rounded-lg font-semibold transition-all bg-blue-100 text-blue-700 hover:bg-blue-200 flex items-center gap-1.5";
-        } else {
-          btn.className = "px-3 py-1.5 rounded-lg font-semibold transition-all bg-slate-100 text-slate-400 cursor-not-allowed flex items-center gap-1.5";
-        }
-      }
-
-      stepInstTitle.innerHTML = stepDetails[currentStep].getTitle();
-      stepInstDesc.innerHTML = stepDetails[currentStep].getDesc();
-      stepDetails[currentStep].setup();
-
-      btnBack.disabled = (currentStep === 1);
-
-      const dict = langData[currentLang];
-      if (currentStep === 4 && stepStates[4]) {
-        btnNext.innerHTML = `${currentLang === 'ms' ? 'Selesai Intervensi' : 'Intervention Complete'} <i class="fa-solid fa-circle-check ml-1 text-emerald-300"></i>`;
-        btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-500/20 transition flex items-center gap-1.5";
-      } else {
-        btnNext.innerHTML = `<span id="btn-next-txt">${dict.btnNextTxt}</span> <i class="fa-solid fa-chevron-right ml-1"></i>`;
-        btnNext.className = "px-5 py-2 text-sm md:text-base font-bold rounded-xl bg-gradient-to-r from-pink-500 to-blue-600 hover:from-pink-600 hover:to-blue-700 text-white shadow-md shadow-pink-500/10 transition flex items-center gap-1.5";
-      }
-    }
-
-    function selectOptionStep2(opt) {
-      const activeSc = scenarioData[currentScenario][currentLang];
-      if (opt === 'M') {
-        stepStates[2] = true;
-        tokenLeft.innerText = "M";
-        tokenLeft.className = "w-14 h-14 rounded-lg bg-pink-500 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all animate-bounce";
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-700 mt-2";
-        feedbackMessage.innerHTML = activeSc.p1_ok;
-        playBeep('success');
-        if (maxReachedStep < 3) maxReachedStep = 3;
-        updateUI();
-      } else {
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-600 mt-2";
-        feedbackMessage.innerHTML = activeSc.p1_err;
-        playBeep('fail');
-      }
-    }
-
-    function selectOptionStep3(opt) {
-      const activeSc = scenarioData[currentScenario][currentLang];
-      if (opt === 'N') {
-        stepStates[3] = true;
-        tokenRight.innerText = "N";
-        tokenRight.className = "w-14 h-14 rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-2xl shadow-md transition-all animate-bounce";
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-700 mt-2";
-        feedbackMessage.innerHTML = activeSc.p2_ok;
-        playBeep('success');
-        if (maxReachedStep < 4) maxReachedStep = 4;
-        updateUI();
-      } else {
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-600 mt-2";
-        feedbackMessage.innerHTML = activeSc.p2_err;
-        playBeep('fail');
-      }
-    }
-
-    function selectOptionStep4(opt) {
-      if (opt === 'M:N') {
-        stepStates[4] = true;
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-emerald-800 mt-2 bg-emerald-50 p-3 rounded-xl border border-emerald-200";
-        feedbackMessage.innerHTML = `
-          <div class='flex flex-col gap-1 items-center'>
-            <span class='text-sm font-bold'><i class='fa-solid fa-trophy text-amber-500'></i> ${currentLang === 'ms' ? 'Syabas! Anda Selesai Intervensi!' : 'Congratulations! Intervention Completed!'}</span>
-            <span class='font-normal text-slate-700'>${currentLang === 'ms' ? 'Kardinaliti muktamad bagi hubungan ini ialah Banyak-ke-Banyak (M:N) dari kiri ke kanan.' : 'The final relationship cardinality is Many-to-Many (M:N) from left to right.'}</span>
-          </div>
-        `;
-        playBeep('success');
-        updateUI();
-      } else {
-        feedbackMessage.className = "text-xs md:text-sm text-center font-bold text-rose-600 mt-2";
-        feedbackMessage.innerHTML = (currentLang === 'ms')
-          ? "<i class='fa-solid fa-triangle-exclamation'></i> Miskonsepsi dikesan! Ingat peraturan Cardio-DB: ambil nilai paling maksimum daripada KEDUA-DUA imbasan (M dan N)."
-          : "<i class='fa-solid fa-triangle-exclamation'></i> Misconception detected! Remember Cardio-DB rule: take the maximum values from BOTH scans (M and N).";
-        playBeep('fail');
-      }
-    }
-  </script>
-
-  <!-- Quiz & Feedback System Logic -->
-  <script>
-    // ... existing quiz logic ...
 
     function renderFeed() {
       const listContainer = document.getElementById('fb-feed-list');
+      if (!listContainer) return;
       const list = getFeedbacks();
 
       if (list.length === 0) {
@@ -1949,8 +1700,8 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="font-bold text-xs md:text-sm text-slate-800">${escapeHtml(item.name)}</span>
-              <span class="px-2 py-0.5 text-[9px] font-bold rounded ${item.role === 'Guru' ? 'bg-pink-100 text-pink-700 border border-pink-200' : 'bg-blue-100 text-blue-700 border border-blue-200'}">${item.role}</span>
-              <span class="px-2 py-0.5 text-[9px] font-bold rounded bg-blue-50 text-blue-600 border border-blue-200">${item.type}</span>
+              <span class="px-2 py-0.5 text-[9px] font-bold rounded ${item.role === 'Guru' ? 'bg-pink-100 text-pink-700 border border-pink-200' : 'bg-blue-100 text-blue-700 border border-blue-200'}">${escapeHtml(item.role)}</span>
+              <span class="px-2 py-0.5 text-[9px] font-bold rounded bg-blue-50 text-blue-600 border border-blue-200">${escapeHtml(item.type)}</span>
             </div>
             <div class="flex items-center text-xs text-amber-400">
               ${'★'.repeat(item.rating)}${'☆'.repeat(5 - item.rating)}
@@ -1958,14 +1709,70 @@
           </div>
           <p class="text-xs md:text-sm text-slate-700 leading-relaxed">${escapeHtml(item.msg)}</p>
           <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-blue-50">
-            <span>${item.time}</span>
+            <span>${escapeHtml(item.time)}</span>
             <button onclick="likeFeedback(${item.id})" class="flex items-center gap-1 hover:text-pink-600 transition">
               <i class="fa-solid fa-thumbs-up"></i>
-              <span>${item.likes} ${currentLang === 'ms' ? 'Suka' : 'Likes'}</span>
+              <span>${item.likes || 0} ${typeof currentLang !== 'undefined' && currentLang === 'ms' ? 'Suka' : 'Likes'}</span>
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    // ... existing window.onload ...
+    function submitFeedback(event) {
+      event.preventDefault();
+      playBeep('success');
+
+      const nameInput = document.getElementById('fb-input-name');
+      const roleSelect = document.getElementById('fb-input-role');
+      const typeSelect = document.getElementById('fb-input-type');
+      const msgInput = document.getElementById('fb-input-msg');
+
+      const newFeedback = {
+        id: Date.now(),
+        name: nameInput ? nameInput.value.trim() : "Pengguna",
+        role: roleSelect ? roleSelect.value : "Awam",
+        type: typeSelect ? typeSelect.value : "Komen",
+        rating: currentRating,
+        msg: msgInput ? msgInput.value.trim() : "",
+        time: new Date().toLocaleDateString('ms-MY'),
+        likes: 0
+      };
+
+      const list = getFeedbacks();
+      list.unshift(newFeedback);
+      saveFeedbacks(list);
+
+      if (msgInput) msgInput.value = '';
+      if (nameInput) nameInput.value = '';
+      setRating(5);
+
+      const toast = document.getElementById('fb-toast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 3500);
+      }
+
+      renderFeed();
+    }
+
+    function likeFeedback(id) {
+      playBeep('click');
+      const list = getFeedbacks();
+      const item = list.find(f => f.id === id);
+      if (item) {
+        item.likes = (item.likes || 0) + 1;
+        saveFeedbacks(list);
+        renderFeed();
+      }
+    }
+
+    window.onload = function() {
+      updateUI();
+      renderFeed();
+    };
+  </script>
+</body>
+</html>
